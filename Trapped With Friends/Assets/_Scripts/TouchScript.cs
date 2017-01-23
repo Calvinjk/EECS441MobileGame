@@ -41,6 +41,7 @@ public class TouchScript : MonoBehaviour {
         rotating = true;
 
         // Actual work for the coroutine is done here in moving the camera
+        // NOTE -- Small inTime numbers may look bad due to snapping of camera to nearest 90 and low number of loops
         for (var t = 0f; t < 1; t += 1f / inTime) {
             transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
             yield return null;
