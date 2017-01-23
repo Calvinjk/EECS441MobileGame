@@ -25,11 +25,16 @@ public class TouchScript : MonoBehaviour {
             GUI.Label(new Rect(0 + 130 * num, 0, 120, 100), message);
         }
 
+        // Style the buttons
+        GUIStyle rotationButton = new GUIStyle();
+        rotationButton.fontSize = 50;
+        rotationButton.alignment = TextAnchor.MiddleCenter;
+
         // Rotate camera if GUI buttons are pressed
-        if (GUI.Button(new Rect(0, 0, Screen.width / 4, Screen.height), "") && !rotating) {
+        if (GUI.RepeatButton(new Rect(0, 0, Screen.width / 4, Screen.height), "<", rotationButton) && !rotating) { // Rotate Left
             StartCoroutine(RotateCamera(Vector3.down * 90, cameraRoatationSpeed));
         }
-        if (GUI.Button(new Rect(Screen.width / 4 * 3, 0, Screen.width / 4, Screen.height), "") && !rotating) {
+        if (GUI.RepeatButton(new Rect(Screen.width / 4 * 3, 0, Screen.width / 4, Screen.height), ">", rotationButton) && !rotating) { // Rotate Right
             StartCoroutine(RotateCamera(Vector3.up * 90, cameraRoatationSpeed));
         }
     }
