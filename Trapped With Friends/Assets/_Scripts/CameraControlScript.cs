@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TouchScript : MonoBehaviour {
+public class CameraControlScript : MonoBehaviour {
     //Initialize
     public float cameraRoatationSpeed = 20;
     public bool ____________________________;
