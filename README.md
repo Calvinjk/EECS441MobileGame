@@ -1,4 +1,4 @@
-# Mobile tutoiral https://unity3d.com/learn/tutorials/topics/mobile-touch/mobile-development
+# Mobile tutorial https://unity3d.com/learn/tutorials/topics/mobile-touch/mobile-development
 # Networking tutorials https://unity3d.com/learn/tutorials/topics/multiplayer-networking
 ## 1) Download Unity from https://unity3d.com/
 ## 2) Download the Android SDK from https://developer.android.com/studio/index.html and the JDK from http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html
