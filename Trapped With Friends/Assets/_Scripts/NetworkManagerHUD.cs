@@ -89,7 +89,7 @@ namespace UnityEngine.Networking {
                     ypos += spacing;
 
 
-                    if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Cancel Connection Attempt")) {
+                    if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 8, Screen.width / 4, Screen.width / 4, Screen.width / 10), "Cancel Connection Attempt")) {
                         manager.StopClient();
                     }
                 }
@@ -120,7 +120,7 @@ namespace UnityEngine.Networking {
             }
 
             if (NetworkServer.active || manager.IsClientConnected()) {
-                if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Stop (X)")) {
+                if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 8, ypos, Screen.width / 4, Screen.height / 10), "Stop (X)")) {
                     manager.StopHost();
                 }
                 ypos += spacing;
