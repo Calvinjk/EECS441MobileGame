@@ -1,7 +1,7 @@
 # Mobile tutoiral https://unity3d.com/learn/tutorials/topics/mobile-touch/mobile-development
 # Networking tutorials https://unity3d.com/learn/tutorials/topics/multiplayer-networking
 ## 1) Download Unity from https://unity3d.com/
-## 2) Download the Android SDK from https://developer.android.com/studio/index.html
+## 2) Download the Android SDK from https://developer.android.com/studio/index.html and the JDK from http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html
 ## 3) Tell Unity where the Android SDK and JDK are located by going to Edit > Preferences > External Tools and filling in SDK and JDK with the paths to each respectively.  (Android folder is SDK2)
 ## 4) Change your build setting to build for Android by going to File > Build Settings clicking on Android and then Switch Platform.  You will also need to add any scenes you want added to the build from this screen.
 ## 5) Download Unity Remote 5 from the app store
