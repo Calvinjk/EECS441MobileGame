@@ -1,0 +1,420 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"Assets/External Assets/Plugins/Photon3Unity3D.dll"
+-r:"Assets/External Assets/Plugins/WebSocket/websocket-sharp.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_4_0
+-define:UNITY_5_4
+-define:UNITY_5
+-define:ENABLE_NEW_BUGREPORTER
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_EDITOR_RETINA
+-define:ENABLE_RETINA_GUISTYLES
+-define:ENABLE_FRAME_DEBUGGER
+-define:ENABLE_GENERICS
+-define:ENABLE_HOME_SCREEN
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_LIGHT_PROBES_LEGACY
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_PLUGIN_INSPECTOR
+-define:ENABLE_SHADOWS
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_SPRITE_POLYGON
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_UNET
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:INCLUDE_IL2CPP
+-define:INCLUDE_DIRECTX12
+-define:PLATFORM_SUPPORTS_MONO
+-define:INCLUDE_PUBNUB
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION
+-define:ENABLE_EDITOR_TESTS_RUNNER
+-define:UNITY_ANDROID
+-define:UNITY_ANDROID_API
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_EGL
+-define:ENABLE_NETWORK
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:PLATFORM_SUPPORTS_ADS_ID
+-define:UNITY_CAN_SHOW_SPLASH_SCREEN
+-define:ENABLE_UNITYADS_RUNTIME
+-define:UNITY_UNITYADS_API
+-define:ENABLE_MONO
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+"Assets/External Assets/GooglePlayGames/BasicApi/Achievement.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/CommonStatusCodes.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/CommonTypes.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/DummyClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Events/IEvent.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Events/IEventsClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/IPlayGamesClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/LeaderboardScoreData.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/IRealTimeMultiplayerClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/ITurnBasedMultiplayerClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/Invitation.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/MatchOutcome.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/Participant.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/Player.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/RealTimeMultiplayerListener.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Multiplayer/TurnBasedMatch.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/AdvertisingResult.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/ConnectionRequest.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/ConnectionResponse.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/DummyNearbyConnectionClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/EndpointDetails.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/INearbyConnectionClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Nearby/NearbyConnectionConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/PlayGamesClientConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/PlayerStats.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Quests/IQuest.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Quests/IQuestMilestone.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/Quests/IQuestsClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/SavedGame/ISavedGameClient.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/SavedGame/ISavedGameMetadata.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/SavedGame/SavedGameMetadataUpdate.cs"
+"Assets/External Assets/GooglePlayGames/BasicApi/ScorePageToken.cs"
+"Assets/External Assets/GooglePlayGames/GameInfo.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesAchievement.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesLeaderboard.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesLocalUser.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesPlatform.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesScore.cs"
+"Assets/External Assets/GooglePlayGames/ISocialPlatform/PlayGamesUserProfile.cs"
+"Assets/External Assets/GooglePlayGames/OurUtils/Logger.cs"
+"Assets/External Assets/GooglePlayGames/OurUtils/Misc.cs"
+"Assets/External Assets/GooglePlayGames/OurUtils/PlatformUtils.cs"
+"Assets/External Assets/GooglePlayGames/OurUtils/PlayGamesHelperObject.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/AndroidClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/AndroidTokenClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Developers/JavaInterfaceProxy.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Developers/JavaObjWrapper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/GoogleApiClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/PendingResult.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/Result.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/ResultCallback.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/ResultCallbackProxy.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/Api/Status.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Common/ConnectionResult.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Games.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Stats/LoadPlayerStatsResultObject.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Stats/PlayerStats.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Stats/PlayerStatsObject.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Stats/Stats.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Android/Gms/Games/Stats/StatsObject.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/IClientImpl.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/IOS/IOSClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/IOS/IOSTokenClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/CallbackUtils.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/ConversionUtils.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Achievement.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/AchievementManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/AndroidPlatformConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Builder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/CommonErrorStatus.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/EndpointDiscoveryListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Event.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/EventManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/GameServices.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/InternalHooks.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/IosPlatformConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Leaderboard.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/LeaderboardManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/MessageListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/MultiplayerInvitation.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/MultiplayerParticipant.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/NearbyConnectionTypes.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/NearbyConnections.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/NearbyConnectionsBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/NearbyConnectionsStatus.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/ParticipantResults.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Player.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/PlayerManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/PlayerStats.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Quest.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/QuestManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/QuestMilestone.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/RealTimeEventListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/RealTimeMultiplayerManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/RealTimeRoom.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/RealTimeRoomConfig.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/RealTimeRoomConfigBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Score.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/ScorePage.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/ScoreSummary.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Sentinels.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/SnapshotManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/SnapshotMetadata.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/SnapshotMetadataChange.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/SnapshotMetadataChangeBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/StatsManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Status.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/SymbolLocation.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/TurnBasedMatch.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/TurnBasedMatchConfig.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/TurnBasedMatchConfigBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/TurnBasedMultiplayerManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/Cwrapper/Types.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/JavaUtils.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeEventClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeNearbyConnectionClientFactory.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeNearbyConnectionsClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeQuestClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeRealtimeMultiplayerClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeSavedGameClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/NativeTurnBasedMultiplayerClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/AchievementManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/AndroidPlatformConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/BaseReferenceHolder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/Callbacks.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/EventManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/GameServices.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/GameServicesBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/IosPlatformConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/LeaderboardManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/MultiplayerInvitation.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/MultiplayerParticipant.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeAchievement.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeAppIdentifier.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeConnectionRequest.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeConnectionResponse.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeEndpointDetails.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeEndpointDiscoveryListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeEvent.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeLeaderboard.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeMessageListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativePlayer.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativePlayerStats.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeQuest.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeQuestMilestone.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeRealTimeRoom.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeScore.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeScoreEntry.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeScorePage.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeScorePageToken.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeScoreSummary.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeSnapshotMetadata.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeSnapshotMetadataChange.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeStartAdvertisingResult.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NativeTurnBasedMatch.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NearbyConnectionsManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/NearbyConnectionsManagerBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/PInvokeUtilities.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/ParticipantResults.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/PlatformConfiguration.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/PlayerManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/PlayerSelectUIResponse.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/QuestManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/RealTimeEventListenerHelper.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/RealtimeManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/RealtimeRoomConfig.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/RealtimeRoomConfigBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/SnapshotManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/StatsManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/TurnBasedManager.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/TurnBasedMatchConfig.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/PInvoke/TurnBasedMatchConfigBuilder.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/Native/UnsupportedSavedGamesClient.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/NearbyConnectionClientFactory.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/PlayGamesClientFactory.cs"
+"Assets/External Assets/GooglePlayGames/Platforms/TokenClient.cs"
+"Assets/External Assets/GooglePlayGames/PluginVersion.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/Demo2DJumpAndRunWithPhysics/Scripts/Demo2DJumpAndRun.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/Demo2DJumpAndRunWithPhysics/Scripts/JumpAndRunMovement.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/ColorPerPlayer.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/ColorPerPlayerApply.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/DemoBoxesGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/OnAwakePhysicsSettings.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/OnClickFlashRpc.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoBoxes/OnDoubleclickDestroy.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/ClickAndDrag.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/DemoOwnershipGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/InstantiateCube.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/MaterialPerOwner.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/OnClickDisableObj.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/OnClickRequestOwnership.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChangeOwner/OnClickRightDestroy.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/ChannelSelector.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/ChatAppIdCheckerUI.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/ChatGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/FriendItem.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/IgnoreUiRaycastWhenInactive.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoChat/NamePickGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoFriendsAndCustomAuth/GUICustomAuth.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoFriendsAndCustomAuth/GUIFriendFinding.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoFriendsAndCustomAuth/GUIFriendsInRoom.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoFriendsAndCustomAuth/OnClickCallMethod.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoHub/HubGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoHub/MoveCam.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoHub/Scripts/DemoHubManager.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoHub/Scripts/ToDemoHubButton.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoHub/ToHubButton.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoMecanim/Scripts/DemoMecanimGUI.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/MessageOverlay.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/OnCollideSwitchTeam.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/OnPickedUpScript.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/PickupCamera.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/PickupController.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/PickupDemoGui.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoPickup/Scripts/PickupTriggerForward.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRPGMovement/Scripts/DemoRPGMovement.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRPGMovement/Scripts/RPGCamera.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRPGMovement/Scripts/RPGMovement.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRockPaperScissors/Scripts/RpsCore.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRockPaperScissors/Scripts/RpsDebug.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoRockPaperScissors/Scripts/RpsDemoConnect.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoSynchronization/CubeExtra.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoSynchronization/CubeInter.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoSynchronization/CubeLerp.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoSynchronization/DragToMove.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoSynchronization/IELdemo.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/Game/Player/ThirdPersonCamera.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/Game/Player/ThirdPersonController.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/Game/Player/ThirdPersonNetwork.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/WorkerInGame.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/WorkerMenu.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/AudioRpc.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/ClickDetector.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/GameLogic.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/Monstergame/Resources/Scripts/myThirdPersonController.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/NetworkCharacter.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/RandomMatchmaker.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/CameraWork.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/LoaderAnime.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/PlayerAnimatorManager.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/PlayerManager.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/PlayerNameInputField.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/PlayerUI.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/Shared Assets/Scripts/IdleRunJump.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/Shared Assets/Scripts/PlayerDiamond.cs"
+"Assets/External Assets/Photon Unity Networking/Demos/Shared Assets/Scripts/PlayerVariables.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/CustomTypes.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Enums.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Extensions.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/FriendInfo.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/GizmoType.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/LoadbalancingPeer.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonClasses.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonHandler.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonLagSimulationGui.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonNetwork.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonPlayer.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonStatsGui.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonStreamQueue.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonView.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/PingCloudRegions.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/RPC.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Room.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/RoomInfo.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/RpcIndexComponent.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/ServerSettings.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/SocketUdp.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/SocketWebTcp.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonAnimatorView.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonRigidbody2DView.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonRigidbodyView.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformView.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewPositionControl.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewPositionModel.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewRotationControl.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewRotationModel.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewScaleControl.cs"
+"Assets/External Assets/Photon Unity Networking/Plugins/PhotonNetwork/Views/PhotonTransformViewScaleModel.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/CullArea.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/HighlightOwnedGameObj.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/InRoomChat.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/InRoomRoundTimer.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/InRoomTime.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/InputToEvent.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/ManualPhotonViewAllocator.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/MoveByKeys.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/NetworkCullingHandler.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnAwakeUsePhotonView.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnClickDestroy.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnClickInstantiate.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnClickLoadSomething.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnJoinedInstantiate.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/OnStartDelete.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PhotonPlayer/PlayerRoomIndexing.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PickupItem.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PickupItemSimple.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PickupItemSyncer.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PointedAtGameObjectInfo.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PunPlayerScores.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PunTeams.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/PunTurnManager.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/QuitOnEscapeOrBack.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/ServerTime.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/ShowInfoOfPlayer.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/ShowStatusWhenConnecting.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/SmoothSyncMovement.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/SupportLogger.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/TimeKeeper.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/UI/ButtonInsideScrollList.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/UI/TextButtonTransition.cs"
+"Assets/External Assets/Photon Unity Networking/UtilityScripts/UI/TextToggleIsOnTransition.cs"
+"Assets/External Assets/PhotonChatApi/ChatChannel.cs"
+"Assets/External Assets/PhotonChatApi/ChatClient.cs"
+"Assets/External Assets/PhotonChatApi/ChatDisconnectCause.cs"
+"Assets/External Assets/PhotonChatApi/ChatEventCode.cs"
+"Assets/External Assets/PhotonChatApi/ChatOperationCode.cs"
+"Assets/External Assets/PhotonChatApi/ChatParameterCode.cs"
+"Assets/External Assets/PhotonChatApi/ChatPeer.cs"
+"Assets/External Assets/PhotonChatApi/ChatState.cs"
+"Assets/External Assets/PhotonChatApi/ChatUserStatus.cs"
+"Assets/External Assets/PhotonChatApi/IChatClientListener.cs"
+"Assets/External Assets/Plugins/WebSocket/WebSocket.cs"
+Assets/TrappedWithFriends/GPGSIds.cs
+Assets/_Scripts/GameManager.cs
+Assets/_Scripts/Launcher.cs
+Assets/_Scripts/PlayerController.cs
+Assets/_Scripts/PlayerNameInputField.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
