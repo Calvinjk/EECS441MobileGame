@@ -10,9 +10,11 @@ namespace com.aaronandco.puzzlepotato {
         // All these must be added by hand in the inspector
         public GameObject addPlayersPanel;
         public GameObject titlePanel;
+        public GameObject getReadyPanel;
         public InputField playerNameInput;
         public GameObject playerCount;
         public GameObject playerList;
+        public Text beginButtonText;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -21,19 +23,38 @@ namespace com.aaronandco.puzzlepotato {
 
         // Make sure the players only see the title screen at first and find the GameManager script
         void Awake() {
-            addPlayersPanel.SetActive(false);
+            SetView(0);
             gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
         }
 
-        // Toggles the view between title screen and player select
-        public void ToggleTitleView() {
-            if (addPlayersPanel.activeInHierarchy == true) {
-                addPlayersPanel.SetActive(false);
-                titlePanel.SetActive(true);
-            } else {
-                addPlayersPanel.SetActive(true);
-                titlePanel.SetActive(false);
-            }
+        // Sets which view is active
+        // 0 - Title
+        // 1 - Add Players
+        // 2 - Get Ready
+        public void SetView(int panel) {
+            switch (panel) {
+                case 0:
+                    titlePanel.SetActive(true);
+                    addPlayersPanel.SetActive(false);
+                    getReadyPanel.SetActive(false);
+                    break;
+                case 1:
+                    titlePanel.SetActive(false);
+                    addPlayersPanel.SetActive(true);
+                    getReadyPanel.SetActive(false);
+                    break;
+                case 2:
+                    titlePanel.SetActive(false);
+                    addPlayersPanel.SetActive(false);
+                    getReadyPanel.SetActive(true);
+
+                    gameManagerScript.curPlayer = Random.Range(0, playerNames.Count - 1);
+                    beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ", please press the button when ready!";
+                    break;
+                default:
+                    Debug.LogWarning("Incorrect view selection");
+                    break;
+            }         
         }
 
         // Adds a new player to the list, updates on screen information to reflect this
@@ -42,10 +63,10 @@ namespace com.aaronandco.puzzlepotato {
             Text playerListText = playerList.GetComponent<Text>();
 
             playerCount.GetComponent<Text>().text = "Current Player Count: " + playerNames.Count;
-            playerListText.text = "Current Players:";
+            playerListText.text = "Current Players:\n";
 
             for (int i = 0; i < playerNames.Count; ++i) {
-                playerListText.text = "\n" + playerListText.text + playerNames[i];
+                playerListText.text = playerListText.text + playerNames[i] + "\n";
             }
 
             playerNameInput.text = "";
@@ -54,7 +75,7 @@ namespace com.aaronandco.puzzlepotato {
 
         // Write the current player list to the master GameManager and load the next scene
         // TODO -- Checks for minimum players and such
-        public void BeginGame() {
+        public void ProceedToGame() {
             gameManagerScript.players = playerNames;
             SceneManager.LoadScene(1);
         }
