@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace com.aaronandco.puzzlepotato {
         // TODO -- Called after a game is completed.  Must cleanup and start a new puzzle.  
         // Cleanup idea: re-load scene and give gameManager current time?
         public void CurrentGameCompleted() {
-
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // TODO
