@@ -68,9 +68,10 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\MasterController.cs" />
-    <Compile Include="Assets\_Scripts\Puzzle.cs" />
     <Compile Include="Assets\_Scripts\PuzzleScripts\OrderedTouch.cs" />
+    <Compile Include="Assets\_Scripts\PuzzleScripts\Puzzle.cs" />
     <Compile Include="Assets\_Scripts\SetupController.cs" />
+    <Compile Include="Assets\_Scripts\Timer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

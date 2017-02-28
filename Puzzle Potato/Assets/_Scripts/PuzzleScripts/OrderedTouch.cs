@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,7 +28,7 @@ namespace com.aaronandco.puzzlepotato {
 
             // Calculate the offsets
             topBound = 5f - 5f / vOffset;
-            botBound = -topBound;
+            botBound = -topBound;       //Be a little more generous due to the timer
             rightBound = 7.5f - 7.5f / hOffset;
             leftBound = -rightBound;
         }

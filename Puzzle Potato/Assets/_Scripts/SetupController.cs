@@ -24,7 +24,7 @@ namespace com.aaronandco.puzzlepotato {
         // Make sure the players only see the title screen at first and find the GameManager script
         void Awake() {
             SetView(0);
-            gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
+            gameManagerScript = (GameManager)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManager");
         }
 
         // Sets which view is active
@@ -37,6 +37,12 @@ namespace com.aaronandco.puzzlepotato {
                     titlePanel.SetActive(true);
                     addPlayersPanel.SetActive(false);
                     getReadyPanel.SetActive(false);
+
+                    // If we are going back to the title screen, wipe players and reset text
+                    playerNames.Clear();
+                    playerCount.GetComponent<Text>().text = "Current Player Count:";
+                    playerList.GetComponent<Text>().text = "Current Players: None";
+                    playerList.GetComponent<Text>().color = Color.red;
                     break;
                 case 1:
                     titlePanel.SetActive(false);

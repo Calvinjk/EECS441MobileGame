@@ -8,25 +8,19 @@ using System.Collections.Generic;
 namespace com.aaronandco.puzzlepotato {
     public class MasterController : MonoBehaviour{
         public List<GameObject> puzzleOptions;
-        public float maxTime = 180f;
-        public Vector2 timerPos;
-        public Vector2 timerSize;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
+        Timer timerScript;
+        GameManager gameManagerScript;
+
         void Awake() {
-            BeginTimer();
+            timerScript = (Timer)GameObject.FindGameObjectWithTag("Timer").GetComponent("Timer");
+            gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
+
+            timerScript.SetTimer(gameManagerScript.maxTime);
+            timerScript.StartTimer();
             StartNewGame();
-        }
-
-        // TODO -- Timer Logic
-        void FixedUpdate() {
-
-        }
-
-        // TODO -- Dynamically create the timer
-        void BeginTimer() {
-            
         }
 
         // TODO -- Called after a game is completed.  Must cleanup and start a new puzzle.  
@@ -42,6 +36,16 @@ namespace com.aaronandco.puzzlepotato {
             Puzzle curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
             Debug.Log("Attempting to start game: " + curPuzzle.name);
             curPuzzleScript.StartGame();
+        }
+
+        // This gets called by the timer when it hits zero
+        public void TimeOut() {
+
+        }
+
+        public void Quit() {
+            gameManagerScript.players.Clear();
+            SceneManager.LoadScene(0);
         }
     }
 }
