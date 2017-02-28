@@ -8,6 +8,7 @@ using System.Collections.Generic;
 namespace com.aaronandco.puzzlepotato {
     public class MasterController : MonoBehaviour{
         public List<GameObject> puzzleOptions;
+        public GameObject currentPlayerText;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -18,14 +19,18 @@ namespace com.aaronandco.puzzlepotato {
             timerScript = (Timer)GameObject.FindGameObjectWithTag("Timer").GetComponent("Timer");
             gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
 
-            timerScript.SetTimer(gameManagerScript.maxTime);
             timerScript.StartTimer();
+
+            gameManagerScript.ShowCurrentPlayer(currentPlayerText.GetComponent<Text>());
+
             StartNewGame();
         }
 
-        // TODO -- Called after a game is completed.  Must cleanup and start a new puzzle.  
-        // Cleanup idea: re-load scene and give gameManager current time?
         public void CurrentGameCompleted() {
+            // Choose new player
+            gameManagerScript.curPlayer = Random.Range(0, gameManagerScript.players.Count - 1);
+
+            // Cleanup and pick new game
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

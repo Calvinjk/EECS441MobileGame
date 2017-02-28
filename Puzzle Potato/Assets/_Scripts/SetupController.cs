@@ -83,6 +83,7 @@ namespace com.aaronandco.puzzlepotato {
         // TODO -- Checks for minimum players and such
         public void ProceedToGame() {
             gameManagerScript.players = playerNames;
+            gameManagerScript.curTime = gameManagerScript.maxTime;
             SceneManager.LoadScene(1);
         }
     }

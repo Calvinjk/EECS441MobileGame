@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -13,11 +14,16 @@ namespace com.aaronandco.puzzlepotato {
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
+        public float curTime;
         public int curPlayer;
         public List<string> players = new List<string>();   // This is the main player list that will be in effect for the duration of the game
 
         void Awake() {
             DontDestroyOnLoad(this);
+        }
+
+        public void ShowCurrentPlayer(Text currentPlayerText) {
+            currentPlayerText.text = "Current Player: " + players[curPlayer];
         }
     }
 }
