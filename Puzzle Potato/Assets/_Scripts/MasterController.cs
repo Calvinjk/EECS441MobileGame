@@ -9,6 +9,9 @@ namespace com.aaronandco.puzzlepotato {
     public class MasterController : MonoBehaviour{
         public List<GameObject> puzzleOptions;
         public GameObject currentPlayerText;
+        [Tooltip("-1 will randomly select puzzles, any other number will only select the puzzle that corresponds to that element number")]
+        public int developerPuzzleSelection = -1;
+        public bool debugLogs = true;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -34,16 +37,18 @@ namespace com.aaronandco.puzzlepotato {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        // TODO
         public void StartNewGame() {
             // Decide on what puzzle and start it
-            GameObject curPuzzle = Instantiate(puzzleOptions[Random.Range(0, puzzleOptions.Count - 1)]);
+            GameObject curPuzzle;
+            if (developerPuzzleSelection == -1) { curPuzzle = Instantiate(puzzleOptions[Random.Range(0, puzzleOptions.Count - 1)]); }
+            else { curPuzzle = Instantiate(puzzleOptions[developerPuzzleSelection]); }
+
             Puzzle curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
-            Debug.Log("Attempting to start game: " + curPuzzle.name);
+            if (debugLogs) { Debug.Log("Attempting to start game: " + curPuzzle.name); }
             curPuzzleScript.StartGame();
         }
 
-        // This gets called by the timer when it hits zero
+        // This gets called by the timer when it hits zero -- TODO
         public void TimeOut() {
 
         }
