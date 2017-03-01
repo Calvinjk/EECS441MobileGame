@@ -40,7 +40,7 @@ namespace com.aaronandco.puzzlepotato {
         public void StartNewGame() {
             // Decide on what puzzle and start it
             GameObject curPuzzle;
-            if (developerPuzzleSelection == -1) { curPuzzle = Instantiate(puzzleOptions[Random.Range(0, puzzleOptions.Count - 1)]); }
+            if (developerPuzzleSelection == -1) { curPuzzle = Instantiate(puzzleOptions[Random.Range(0, puzzleOptions.Count)]); }
             else { curPuzzle = Instantiate(puzzleOptions[developerPuzzleSelection]); }
 
             Puzzle curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
@@ -48,9 +48,10 @@ namespace com.aaronandco.puzzlepotato {
             curPuzzleScript.StartGame();
         }
 
-        // This gets called by the timer when it hits zero -- TODO
+        // TODO - Make a "You Lose" screen or somthing
+        // This gets called by the timer when it hits zero
         public void TimeOut() {
-
+            SceneManager.LoadScene(0);
         }
 
         public void Quit() {

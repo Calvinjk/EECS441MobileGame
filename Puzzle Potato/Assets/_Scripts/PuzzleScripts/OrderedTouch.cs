@@ -18,6 +18,7 @@ namespace com.aaronandco.puzzlepotato {
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         public int attemptNum = 1;      // Current touch number.  Used to make sure user has touched the "correct" circle
+        public int numLocations;
         public float topBound;
         public float botBound;
         public float rightBound;
@@ -48,7 +49,7 @@ namespace com.aaronandco.puzzlepotato {
                         colInfo.gameObject.SetActive(false);
 
                         // Check to see if player won
-                        if (attemptNum > maxLocations) {
+                        if (attemptNum > numLocations) {
                             if (debugLogs) { Debug.Log("Completed OrderedTouch, calling GameCompleted()"); }
                             GameCompleted();
                         }
@@ -65,7 +66,7 @@ namespace com.aaronandco.puzzlepotato {
             Debug.Log("Started Ordered Touch");
             // Each run through the for loop will spawn a circle randomly on the screen
             // TODO -- If a circle is skipped, wrong number will appear
-            int numLocations = Random.Range(minLocations, maxLocations + 1);
+            numLocations = Random.Range(minLocations, maxLocations + 1);
             for (int i = 0; i < numLocations; ++i) {
                 int attemptNum = 0;
                 Vector2 spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));
