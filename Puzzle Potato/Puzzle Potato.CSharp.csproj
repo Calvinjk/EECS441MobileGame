@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\MasterController.cs" />
+    <Compile Include="Assets\_Scripts\PuzzleScripts\BugCatch.cs" />
     <Compile Include="Assets\_Scripts\PuzzleScripts\OrderedTouch.cs" />
     <Compile Include="Assets\_Scripts\PuzzleScripts\Puzzle.cs" />
     <Compile Include="Assets\_Scripts\SetupController.cs" />

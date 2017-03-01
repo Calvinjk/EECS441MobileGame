@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
     public class OrderedTouch : Puzzle {
-        public int maxLocations = 3;    // Maximum number of locations to spawn
+        public int minLocations = 3;    // Minimum number of locations to spawn
+        public int maxLocations = 5;    // Maximum number of locations to spawn
         public float circleSize = 2f;   // How large of a circle to spawn
         public float minDist = 2.5f;    // How far apart circles must be
         public float hOffset = 5f;      // Keep things away from the edges of the screen
@@ -64,7 +65,8 @@ namespace com.aaronandco.puzzlepotato {
             Debug.Log("Started Ordered Touch");
             // Each run through the for loop will spawn a circle randomly on the screen
             // TODO -- If a circle is skipped, wrong number will appear
-            for (int i = 0; i < maxLocations; ++i) {
+            int numLocations = Random.Range(minLocations, maxLocations + 1);
+            for (int i = 0; i < numLocations; ++i) {
                 int attemptNum = 0;
                 Vector2 spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));
                 while (minDistanceToCircle(spawnPos) < minDist) {
