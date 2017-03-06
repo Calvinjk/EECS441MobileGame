@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
     public class MasterController : MonoBehaviour{
-        public List<GameObject> puzzleOptions;
-        public GameObject currentPlayerText;
+        public List<GameObject> puzzleOptions;      // This should hold all of the GameObjects that run the chosen puzzles
+        public GameObject currentPlayerText;        
         [Tooltip("-1 will randomly select puzzles, any other number will only select the puzzle that corresponds to that element number")]
-        public int developerPuzzleSelection = -1;
-        public bool debugLogs = true;
+        public int developerPuzzleSelection = -1;   // Refer to the tooltip
+        public bool debugLogs = true;               // True if you want to see the debug logs (development)
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 

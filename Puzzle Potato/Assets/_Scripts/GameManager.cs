@@ -10,16 +10,16 @@ namespace com.aaronandco.puzzlepotato {
         // The GameManager is used to pass variables from the game setup screen to the MasterController which runs the game in the next scene
         // The GameManager will hold all variables needed throughout the game
 
-        public float maxTime = 180f;
+        public float maxTime = 180f;    // Starting time for the timer when the game starts
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
-        public float curTime;
-        public int curPlayer;
+        public float curTime;                               // How much time is currently left
+        public int curPlayer;                               // Which player should be playing
         public List<string> players = new List<string>();   // This is the main player list that will be in effect for the duration of the game
 
         void Awake() {
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this);    // Make sure the GameManager can persist between scene changes
         }
 
         public void ShowCurrentPlayer(Text currentPlayerText) {

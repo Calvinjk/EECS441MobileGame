@@ -25,7 +25,8 @@ namespace com.aaronandco.puzzlepotato {
             if (active) { gameManagerScript.curTime -= Time.deltaTime; }
             if (gameManagerScript.curTime < 0) {
                 gameManagerScript.curTime = 0;   // Do not allow the timer below zero
-                SendAlarm();    // This will only fire if timer is active.  Neat trick
+                SendTimeoutAlarm();    // This will only fire if timer is active.  Neat trick
+                StopTimer();
             } 
             DisplayTime();
         }
@@ -40,7 +41,7 @@ namespace com.aaronandco.puzzlepotato {
             timerText.text = minutes.ToString() + ":" + secondString;
         }
 
-        void SendAlarm() {
+        void SendTimeoutAlarm() {
             masterControllerScript.TimeOut();
         }
 
