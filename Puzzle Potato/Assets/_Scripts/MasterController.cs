@@ -31,7 +31,7 @@ namespace com.aaronandco.puzzlepotato {
 
         public void CurrentGameCompleted() {
             // Choose new player
-            gameManagerScript.curPlayer = Random.Range(0, gameManagerScript.players.Count - 1);
+            gameManagerScript.curPlayer = Random.Range(0, gameManagerScript.players.Count);
 
             // Cleanup and pick new game
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
