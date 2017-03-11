@@ -81,12 +81,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Scripts\BugController.cs" />
+    <Compile Include="Assets\_Scripts\AvoidancePath\AvoidancePath.cs" />
+    <Compile Include="Assets\_Scripts\BugCatch\BugCatch.cs" />
+    <Compile Include="Assets\_Scripts\BugCatch\BugController.cs" />
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\MasterController.cs" />
-    <Compile Include="Assets\_Scripts\PuzzleScripts\BugCatch.cs" />
-    <Compile Include="Assets\_Scripts\PuzzleScripts\OrderedTouch.cs" />
-    <Compile Include="Assets\_Scripts\PuzzleScripts\Puzzle.cs" />
+    <Compile Include="Assets\_Scripts\OrderedTouch\OrderedTouch.cs" />
+    <Compile Include="Assets\_Scripts\Puzzle.cs" />
     <Compile Include="Assets\_Scripts\SetupController.cs" />
     <Compile Include="Assets\_Scripts\Timer.cs" />
   </ItemGroup>
