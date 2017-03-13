@@ -10,10 +10,12 @@ namespace com.aaronandco.puzzlepotato {
         public float spawnFrequency = 0.5f;
         public float maxSize = 10f;
         public float minSize = 1f;
+        public bool debugLogs = true;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         public List<GameObject> blocks;
+        GameObject startingAreaInstance;
         public bool inProgress = false;
         public float curTime = 0;
         float topBound = 5f;
@@ -29,6 +31,7 @@ namespace com.aaronandco.puzzlepotato {
                     Vector2 touchPos = new Vector2(wp.x, wp.y);
                     Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
                     if (colInfo != null) { // StartingArea was touched
+                        if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
                         SwapMode();
                     }
                 }
@@ -43,11 +46,18 @@ namespace com.aaronandco.puzzlepotato {
 
                     blocks.Add(block);
                 }
+                if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
+                    if (debugLogs) { Debug.Log("Player lifted finger off screen"); }
+                    SwapMode();
+                }
             }
         }
 
         void SwapMode() {
             if (inProgress) {
+                // Swap mode
+                inProgress = false;
+
                 // Delete all blocks on screen
                 foreach (GameObject obj in blocks) {
                     Destroy(obj);
@@ -55,8 +65,12 @@ namespace com.aaronandco.puzzlepotato {
                 blocks.Clear();
 
                 // Re-spawn the starting area
-                Instantiate(startingArea);
+                startingAreaInstance = Instantiate(startingArea);
             } else {
+                // Swap mode
+                inProgress = true;
+                Destroy(startingAreaInstance);
+
                 // TODO
                 // spawn in a bunch of blocks to start (one each horizontally ?)
                 // Disable starting area
@@ -64,7 +78,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public override void StartGame() {
-            Instantiate(startingArea);
+            startingAreaInstance = Instantiate(startingArea);
         }
     }
 }
