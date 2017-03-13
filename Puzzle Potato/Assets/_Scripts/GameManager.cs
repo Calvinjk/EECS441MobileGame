@@ -23,7 +23,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public void ShowCurrentPlayer(Text currentPlayerText) {
-            currentPlayerText.text = "Current Player: " + players[curPlayer];
+            currentPlayerText.text = "Current  Player:  " + players[curPlayer];
         }
     }
 }

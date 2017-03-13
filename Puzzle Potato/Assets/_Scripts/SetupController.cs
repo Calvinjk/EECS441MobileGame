@@ -40,9 +40,9 @@ namespace com.aaronandco.puzzlepotato {
 
                     // If we are going back to the title screen, wipe players and reset text
                     playerNames.Clear();
-                    playerCount.GetComponent<Text>().text = "Current Player Count:";
-                    playerList.GetComponent<Text>().text = "Current Players: None";
-                    playerList.GetComponent<Text>().color = Color.red;
+					playerCount.GetComponent<Text>().text = "Number  of  players: 0";
+					playerList.GetComponent<Text>().text = "Current  Players:  None";
+                    playerList.GetComponent<Text>().color = Color.black;
                     break;
                 case 1:
                     titlePanel.SetActive(false);
@@ -55,7 +55,7 @@ namespace com.aaronandco.puzzlepotato {
                     getReadyPanel.SetActive(true);
 
                     gameManagerScript.curPlayer = Random.Range(0, playerNames.Count - 1);
-                    beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ", please press the button when ready!";
+                    beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ",  please  press  the  button  when  ready!";
                     break;
                 default:
                     Debug.LogWarning("Incorrect view selection");
@@ -68,15 +68,15 @@ namespace com.aaronandco.puzzlepotato {
             playerNames.Add(playerNameInput.text);
             Text playerListText = playerList.GetComponent<Text>();
 
-            playerCount.GetComponent<Text>().text = "Current Player Count: " + playerNames.Count;
-            playerListText.text = "Current Players:\n";
+            playerCount.GetComponent<Text>().text = "Number  of  players: " + playerNames.Count;
+            playerListText.text = "Current  Players:\n";
 
             for (int i = 0; i < playerNames.Count; ++i) {
-                playerListText.text = playerListText.text + playerNames[i] + "\n";
+                playerListText.text = playerListText.text + "\t" +playerNames[i] + "\n";
             }
 
             playerNameInput.text = "";
-            playerListText.color = Color.white;
+            playerListText.color = Color.black;
         }
 
         // Write the current player list to the master GameManager and load the next scene

@@ -51,7 +51,7 @@ namespace com.aaronandco.puzzlepotato {
         // TODO - Make a "You Lose" screen or somthing
         // This gets called by the timer when it hits zero
         public void TimeOut() {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
 
         public void Quit() {
