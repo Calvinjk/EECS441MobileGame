@@ -62,7 +62,7 @@ namespace com.aaronandco.puzzlepotato {
                 Vector2 touchPos = new Vector2(wp.x, wp.y);
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
                 if (colInfo != null) {
-                    if (colInfo.gameObject.name == "AvoidanceArea(Clone)") {
+                    if (colInfo.gameObject.name == "EndArea") {
                         GameCompleted();
                     } else { // Falling block was touched
                         SwapMode();
@@ -90,6 +90,7 @@ namespace com.aaronandco.puzzlepotato {
                 inProgress = true;
                 Destroy(startingAreaInstance);
                 endingAreaInstance = Instantiate(goalArea, new Vector3(6.25f, 0, 0), Quaternion.identity);
+                endingAreaInstance.name = "EndArea";
 
                 //Spawn a bunch of starting blocks
                 List<int> positions = new List<int>();
