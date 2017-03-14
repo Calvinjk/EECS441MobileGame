@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
     public class BugCatch : Puzzle {
 
-        public GameObject bugPrefab;
+        public List<GameObject> bugPrefabs;
         public int minBugs          = 10;
         public int maxBugs          = 30;
         public float minBugSpeed    = 10f;
@@ -25,8 +26,9 @@ namespace com.aaronandco.puzzlepotato {
 
         public override void StartGame() {
             for (int i = 0; i < numBugs; ++i) {
+                int bugType = Random.Range(0, bugPrefabs.Count);
                 Quaternion spawnRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-                GameObject bugInstance = Instantiate(bugPrefab, new Vector3(Random.Range(leftBound, rightBound), Random.Range(botBound, topBound), 1), spawnRotation) as GameObject;
+                GameObject bugInstance = Instantiate(bugPrefabs[bugType], new Vector3(Random.Range(leftBound, rightBound), Random.Range(botBound, topBound), 1), spawnRotation) as GameObject;
 
                 BugController bug = (BugController)bugInstance.GetComponent("BugController");
                 bug.speed = Random.Range(minBugSpeed, maxBugSpeed);
