@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
-	public class LoserController : MonoBehaviour {
+	public class LoseController : MonoBehaviour {
 
 		public GameObject loserName;
 
@@ -19,11 +19,13 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void ContinueGame() {
+			UnityEngine.Debug.Log("continuing");
 			gameManagerScript.curTime = gameManagerScript.curTime;
-			SceneManager.LoadScene (1);
+			SceneManager.LoadScene(1);
 		}
 
 		public void NewGame() {
+			UnityEngine.Debug.Log("new game");
 			gameManagerScript.players.Clear();
 			SceneManager.LoadScene(0);
 		}

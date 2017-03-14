@@ -8,12 +8,17 @@ using System.Collections.Generic;
 namespace com.aaronandco.puzzlepotato {
     public class SetupController : MonoBehaviour {
         // All these must be added by hand in the inspector
-        public GameObject addPlayersPanel;
         public GameObject titlePanel;
-        public GameObject getReadyPanel;
+        public GameObject addPlayersPanel;
+        public GameObject startPanel;
+		public Text instruction;
         public InputField playerNameInput;
         public GameObject playerCount;
         public GameObject playerList;
+		public GameObject readyButton;
+		public GameObject addPlayerButton;
+		public GameObject backButton;
+		public GameObject playButton;
         public Text beginButtonText;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
@@ -30,29 +35,51 @@ namespace com.aaronandco.puzzlepotato {
         // Sets which view is active
         // 0 - Title
         // 1 - Add Players
-        // 2 - Get Ready
-        public void SetView(int panel) {
-            switch (panel) {
-                case 0:
-                    titlePanel.SetActive(true);
-                    addPlayersPanel.SetActive(false);
-                    getReadyPanel.SetActive(false);
+		// 2 - Confirm players/settings
+        // 3 - START
+        public void SetView (int panel)
+		{
+			titlePanel.SetActive (false);
+			addPlayersPanel.SetActive (false);
+			startPanel.SetActive (false);
 
-                    // If we are going back to the title screen, wipe players and reset text
-                    playerNames.Clear();
-					playerCount.GetComponent<Text>().text = "Number  of  players: 0";
-					playerList.GetComponent<Text>().text = "Current  Players:  None";
-                    playerList.GetComponent<Text>().color = Color.black;
-                    break;
-                case 1:
-                    titlePanel.SetActive(false);
+			playButton.SetActive (false);
+			backButton.SetActive (false);
+			addPlayerButton.SetActive (false);
+			readyButton.SetActive (false);
+			switch (panel) {
+				case 0:
+					titlePanel.SetActive (true);
+	
+	                    // If we are going back to the title screen, wipe players and reset text
+					playerNames.Clear ();
+					playerCount.GetComponent<Text> ().text = "Number  of  players: 0";
+					playerList.GetComponent<Text> ().text = "Current  Players:  \n \t None";
+					playerList.GetComponent<Text> ().color = Color.black;
+					break;
+				case 1:
+					addPlayersPanel.SetActive (true);
+					instruction.text = "please  enter  player  names";
+	
+					addPlayerButton.SetActive (true);
+					readyButton.SetActive (true);
+					break;
+				case 2:
                     addPlayersPanel.SetActive(true);
-                    getReadyPanel.SetActive(false);
-                    break;
-                case 2:
-                    titlePanel.SetActive(false);
-                    addPlayersPanel.SetActive(false);
-                    getReadyPanel.SetActive(true);
+					if (playerNames.Count < 2) {
+						Debug.Log("not enough players");
+						instruction.text = "please  input  at  least  2  players";
+						instruction.color = Color.red;
+						goto case 1;
+					}
+				   	instruction.text = "is  this  correct?";
+					instruction.color = Color.black; 
+
+					playButton.SetActive(true);
+					backButton.SetActive(true);
+					break;
+                case 3:
+                    startPanel.SetActive(true);
 
                     gameManagerScript.curPlayer = Random.Range(0, playerNames.Count - 1);
                     beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ",  please  press  the  button  when  ready!";
@@ -65,6 +92,11 @@ namespace com.aaronandco.puzzlepotato {
 
         // Adds a new player to the list, updates on screen information to reflect this
         public void AddPlayerToList() {
+			if (playerNames.Count + 1 == 9) {
+				instruction.text = "can  only  have  up  to  8  players";
+				instruction.color = Color.red; 
+				return;
+			}
             playerNames.Add(playerNameInput.text);
             Text playerListText = playerList.GetComponent<Text>();
 
@@ -82,6 +114,8 @@ namespace com.aaronandco.puzzlepotato {
         // Write the current player list to the master GameManager and load the next scene
         // TODO -- Checks for minimum players and such
         public void ProceedToGame() {
+            Debug.Log("Starting...");
+
             gameManagerScript.players = playerNames;
             gameManagerScript.curTime = gameManagerScript.maxTime;
             SceneManager.LoadScene(1);
