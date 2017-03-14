@@ -50,8 +50,8 @@ namespace com.aaronandco.puzzlepotato {
 			switch (panel) {
 				case 0:
 					titlePanel.SetActive (true);
-	
-	                    // If we are going back to the title screen, wipe players and reset text
+		
+	                // If we are going back to the title screen, wipe players and reset text
 					playerNames.Clear ();
 					playerCount.GetComponent<Text> ().text = "Number  of  players: 0";
 					playerList.GetComponent<Text> ().text = "Current  Players:  \n \t None";
@@ -59,19 +59,14 @@ namespace com.aaronandco.puzzlepotato {
 					break;
 				case 1:
 					addPlayersPanel.SetActive (true);
-					instruction.text = "please  enter  player  names";
-	
+					instruction.text = "please  enter  between  2  and  8  players";
+
+					readyButton.SetActive (false);
 					addPlayerButton.SetActive (true);
-					readyButton.SetActive (true);
+					
 					break;
 				case 2:
                     addPlayersPanel.SetActive(true);
-					if (playerNames.Count < 2) {
-						Debug.Log("not enough players");
-						instruction.text = "please  input  at  least  2  players";
-						instruction.color = Color.red;
-						goto case 1;
-					}
 				   	instruction.text = "is  this  correct?";
 					instruction.color = Color.black; 
 
@@ -91,10 +86,14 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         // Adds a new player to the list, updates on screen information to reflect this
-        public void AddPlayerToList() {
-			if (playerNames.Count + 1 == 9) {
-				instruction.text = "can  only  have  up  to  8  players";
-				instruction.color = Color.red; 
+        public void AddPlayerToList () {
+			if (playerNames.Count >= 1) {
+				readyButton.SetActive (true);
+			}
+			if (playerNames.Count >= 7) {
+				addPlayerButton.SetActive (false);
+			}
+			if (playerNameInput.text == "") {
 				return;
 			}
             playerNames.Add(playerNameInput.text);
@@ -112,7 +111,6 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         // Write the current player list to the master GameManager and load the next scene
-        // TODO -- Checks for minimum players and such
         public void ProceedToGame() {
             Debug.Log("Starting...");
 
