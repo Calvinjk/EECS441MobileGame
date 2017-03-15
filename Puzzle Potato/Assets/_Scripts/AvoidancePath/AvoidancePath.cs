@@ -22,6 +22,7 @@ namespace com.aaronandco.puzzlepotato {
         public bool inProgress = false;
         public float curTime = 0;
         float topBound = 5f;
+        float horizontalBound = 8f;
 
         void Awake() {
             Initialize();
@@ -83,14 +84,15 @@ namespace com.aaronandco.puzzlepotato {
                 blocks.Clear();
 
                 // Re-spawn the starting area
-                startingAreaInstance = Instantiate(goalArea);
+                startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0, 0), Quaternion.identity);
                 Destroy(endingAreaInstance);
             } else {
                 // Swap mode
                 inProgress = true;
                 Destroy(startingAreaInstance);
-                endingAreaInstance = Instantiate(goalArea, new Vector3(6.25f, 0, 0), Quaternion.identity);
+                endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
                 endingAreaInstance.name = "EndArea";
+                endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
 
                 //Spawn a bunch of starting blocks
                 List<int> positions = new List<int>();
@@ -119,7 +121,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public override void StartGame() {
-            startingAreaInstance = Instantiate(goalArea);
+            startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0), Quaternion.identity);
         }
     }
 }
