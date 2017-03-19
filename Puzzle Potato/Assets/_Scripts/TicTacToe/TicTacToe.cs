@@ -22,19 +22,21 @@ namespace com.aaronandco.puzzlepotato {
             { -1, -1, -1 }, 
             { -1, -1, -1 }
         };
-        bool aiMove = false;
-        bool pause = false;
+        public bool aiMove = false;
+        public bool pause = false;
 
         void Start() {
             Initialize();
         }
 
         public override void StartGame() {
-            // Create the UI for the game
+            // Create the UI for the game and reset all variables
             if (board != null) { Destroy(board); }
             if (losePopup != null) { Destroy(losePopup); }
+            aiMove = false;
+            pause = false;
             board = Instantiate(boardPrefab) as GameObject;
-            boardStatus = new int[3, 3] {
+            boardStatus = new int[3,3] {
                 { -1, -1, -1 },
                 { -1, -1, -1 },
                 { -1, -1, -1 }
@@ -54,12 +56,20 @@ namespace com.aaronandco.puzzlepotato {
                         if (boardStatus[(int)gridSpaceName[0] - 48, (int)gridSpaceName[1] - 48] == -1) { // Need to subtract 48 because of ASCII values
                             boardStatus[(int)gridSpaceName[0] - 48, (int)gridSpaceName[1] - 48] = 1;
                             colInfo.gameObject.GetComponent<SpriteRenderer>().sprite = xSprite;
-                            aiMove = true;
+                            // Check for a full board
+                            int placed = 0;
+                            for (int i = 0; i < 3; ++i) {
+                                for (int j = 0; j < 3; ++j) {
+                                    if (boardStatus[i, j] != -1) {
+                                        ++placed;
+                                    }
+                                }
+                            }
+                            if (placed != 9) { aiMove = true; }
                         }
+                        CheckWin(1);
                     }
                 }
-
-                CheckWin(1);
 
                 if (aiMove) {
                     int row = Random.Range(0, 3);
@@ -76,10 +86,9 @@ namespace com.aaronandco.puzzlepotato {
                     boardStatus[row, col] = 0;
                     target.GetComponent<SpriteRenderer>().sprite = oSprite;
                     aiMove = false;
-                }
-
-                CheckWin(0);
-            }
+                    CheckWin(0);
+                }             
+            } 
         }
 
         void CheckWin(int player) {
@@ -112,12 +121,12 @@ namespace com.aaronandco.puzzlepotato {
                     }
                 }
             }
-            if (debugLogs) { Debug.Log("Placed: " + placed); }
             if (placed == 9) { GameFailed(); }
         }
 
         void GameFailed() {
             // Notify player and print a popup
+            if (losePopup != null) { Destroy(losePopup); }
             losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false);
             pause = true;
         }
