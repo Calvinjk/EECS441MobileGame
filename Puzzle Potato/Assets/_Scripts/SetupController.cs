@@ -87,14 +87,14 @@ namespace com.aaronandco.puzzlepotato {
 
         // Adds a new player to the list, updates on screen information to reflect this
         public void AddPlayerToList () {
+            if (playerNameInput.text == "") {
+                return;
+            }
 			if (playerNames.Count >= 1) {
 				readyButton.SetActive (true);
 			}
 			if (playerNames.Count >= 7) {
 				addPlayerButton.SetActive (false);
-			}
-			if (playerNameInput.text == "") {
-				return;
 			}
             playerNames.Add(playerNameInput.text);
             Text playerListText = playerList.GetComponent<Text>();

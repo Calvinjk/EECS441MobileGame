@@ -20,7 +20,7 @@ namespace com.aaronandco.puzzlepotato {
 
 		public void ContinueGame() {
 			UnityEngine.Debug.Log("continuing");
-			gameManagerScript.curTime = gameManagerScript.curTime;
+			gameManagerScript.curTime = gameManagerScript.maxTime;
 			SceneManager.LoadScene(1);
 		}
 
