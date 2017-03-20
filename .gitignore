@@ -5,6 +5,9 @@
 [Oo]bj/
 [Bb]uild
 /[Ll]ibrary/
+Library/
+library/
+ProjectSettings/
 sysinfo.txt
 *.stackdump
  
