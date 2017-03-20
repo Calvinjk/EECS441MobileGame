@@ -70,8 +70,9 @@ namespace com.aaronandco.puzzlepotato {
                 Vector2 spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));  // Attempt to determine a spawn position
                 while (minDistanceToCircle(spawnPos) < minDist) {   // If this attempt is too close to another circle, try again
                     if (debugLogs) {
-                        Debug.Log("Attempting to place circle " + i + "at " + minDistanceToCircle(spawnPos) + " dist.  Attempt #" + attemptNum);
+                        Debug.Log("Attempting to place circle " + i + " at " + minDistanceToCircle(spawnPos) + " dist.  Attempt #" + attemptNum);
                     }
+                    ++attemptNum;
                     if (attemptNum > maxAttempts) { // Break out of trying to find a pos (too many tries)
                         if (debugLogs) { Debug.Log("Giving up on circle " + i); }
                         --numLocations;
@@ -79,7 +80,6 @@ namespace com.aaronandco.puzzlepotato {
                         break;
                     } 
                     spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));
-                    ++attemptNum;
                 }
                 if (attemptNum > maxAttempts) { continue; } // Skip to next circle
 
