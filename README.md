@@ -10,7 +10,7 @@
 ### b) Move file onto phone with method of your choice
 ### c) Enjoy
 
-# ===================================================
+# =======================================
 
 # Mobile tutorial https://unity3d.com/learn/tutorials/topics/mobile-touch/mobile-development
 ## 1) Download Unity from https://unity3d.com/
