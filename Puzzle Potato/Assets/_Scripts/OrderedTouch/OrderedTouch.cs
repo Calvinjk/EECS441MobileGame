@@ -82,7 +82,6 @@ namespace com.aaronandco.puzzlepotato {
                     spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));
                 }
                 if (attemptNum > maxAttempts) { continue; } // Skip to next circle
-
                 GameObject placedCircle = circlePrefab;                                         // Create the GameObject we will place
                 placedCircle.transform.localScale = new Vector3(circleSize, circleSize, 1);     // Scale to desired size
                 placedCircle.GetComponentInChildren<TextMesh>().text = (i + 1).ToString();      // Change the text on the circle to the correct number
