@@ -8,9 +8,7 @@ namespace com.aaronandco.puzzlepotato {
         public int minLocations = 3;    // Minimum number of locations to spawn
         public int maxLocations = 5;    // Maximum number of locations to spawn
         public float circleSize = 2f;   // How large of a circle to spawn
-        public float minDist = 2.5f;    // How far apart circles must be
-        public float hOffset = 5f;      // Keep things away from the edges of the screen
-        public float vOffset = 5f;      // Keep things away from the edges of the screen
+        public float minDist = 2f;    // How far apart circles must be
         public int maxAttempts = 10;    // Number of attempts to place a circle before it gives up and skips to the next one
         public GameObject circlePrefab; // What to spawn (what the circle looks like)
         public bool debugLogs = true;   // True if you want to see the debug logs for this puzzle (development)
@@ -29,9 +27,9 @@ namespace com.aaronandco.puzzlepotato {
             Initialize();
 
             // Calculate the offsets
-            topBound = 5f - 5f / vOffset;
+            topBound = 3f;
             botBound = -topBound;
-            rightBound = 7.5f - 7.5f / hOffset;
+            rightBound = 6.5f;
             leftBound = -rightBound;
         }
 
@@ -76,6 +74,8 @@ namespace com.aaronandco.puzzlepotato {
                     }
                     if (attemptNum > maxAttempts) { // Break out of trying to find a pos (too many tries)
                         if (debugLogs) { Debug.Log("Giving up on circle " + i); }
+                        --numLocations;
+                        --i;
                         break;
                     } 
                     spawnPos = new Vector2(Random.Range(rightBound, leftBound), Random.Range(botBound, topBound));
