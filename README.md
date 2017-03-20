@@ -1,3 +1,17 @@
+# STEPS TO BUILD AND RUN CODE:
+## 1) Through Unity
+### a) Launch Unity and Open the downloaded project folder
+### b) Attach andriod phone via USB in PTP mode
+### c) Press ctrl+b or File > Build and Run
+### d) Unity will build, transfer, and open the application on your attached mobile device
+### e) Detach phone
+## 2) Independent
+### a) Download BUILD.apk in the Puzzle Potato folder
+### b) Move file onto phone with method of your choice
+### c) Enjoy
+
+# ===================================================
+
 # Mobile tutorial https://unity3d.com/learn/tutorials/topics/mobile-touch/mobile-development
 ## 1) Download Unity from https://unity3d.com/
 ## 2) Download the Android SDK from https://developer.android.com/studio/index.html and the JDK from http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html
