@@ -13,6 +13,9 @@ namespace com.aaronandco.puzzlepotato {
         public int developerPuzzleSelection = -1;   // Refer to the tooltip
         public bool debugLogs = true;               // True if you want to see the debug logs (development)
 
+        public GameObject passToPanel;
+        public GameObject playerName; 
+
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         Timer timerScript;
@@ -33,8 +36,13 @@ namespace com.aaronandco.puzzlepotato {
             // Choose new player
             gameManagerScript.curPlayer = Random.Range(0, gameManagerScript.players.Count);
 
+            //show the next player
+            playerName.GetComponent<Text>().text = gameManagerScript.players[gameManagerScript.curPlayer];
+            passToPanel.SetActive(true);
+
             // Cleanup and pick new game
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            passToPanel.SetActive(false);
         }
 
         public void StartNewGame() {
