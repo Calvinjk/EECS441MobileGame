@@ -7,7 +7,7 @@ namespace com.aaronandco.puzzlepotato {
 
         public List<GameObject> bugPrefabs;
         public int minBugs          = 10;
-        public int maxBugs          = 30;
+        public int maxBugs          = 25;
         public float minBugSpeed    = 10f;
         public float maxBugSpeed    = 30f;
 
@@ -28,7 +28,8 @@ namespace com.aaronandco.puzzlepotato {
             for (int i = 0; i < numBugs; ++i) {
                 int bugType = Random.Range(0, bugPrefabs.Count);
                 Quaternion spawnRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-                GameObject bugInstance = Instantiate(bugPrefabs[bugType], new Vector3(Random.Range(leftBound, rightBound), Random.Range(botBound, topBound), 1), spawnRotation) as GameObject;
+                Vector3 position = new Vector3(Random.Range(leftBound, rightBound), Random.Range(botBound, topBound), 1);
+                GameObject bugInstance = Instantiate(bugPrefabs[bugType], position, spawnRotation) as GameObject;
 
                 BugController bug = (BugController)bugInstance.GetComponent("BugController");
                 bug.speed = Random.Range(minBugSpeed, maxBugSpeed);
