@@ -15,10 +15,12 @@ namespace com.aaronandco.puzzlepotato {
 
         public GameObject popupPrefab;
         public GameObject playerName; 
+        public GameObject instrPrefab;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         GameObject popUp;
+        int whichPuzzle;
 
         Timer timerScript;
         GameManager gameManagerScript;
@@ -47,18 +49,47 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         IEnumerator nextGame() {
-            yield return new WaitForSeconds(.7f);
+            yield return new WaitForSeconds(1.3f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void StartNewGame() {
             // Decide on what puzzle and start it
             GameObject curPuzzle;
-            if (developerPuzzleSelection == -1) { curPuzzle = Instantiate(puzzleOptions[Random.Range(0, puzzleOptions.Count)]); }
-            else { curPuzzle = Instantiate(puzzleOptions[developerPuzzleSelection]); }
+            if (developerPuzzleSelection == -1) { 
+                whichPuzzle = Random.Range(0, puzzleOptions.Count);
+                curPuzzle = Instantiate(puzzleOptions[whichPuzzle]); 
+            }
+            else { 
+                whichPuzzle = developerPuzzleSelection;
+                curPuzzle = Instantiate(puzzleOptions[developerPuzzleSelection]); 
+            }
 
             Puzzle curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
             if (debugLogs) { Debug.Log("Attempting to start game: " + curPuzzle.name); }
+
+            popUp = Instantiate(instrPrefab, GameObject.Find("Canvas").transform, false);
+
+            if (whichPuzzle == 0) {             // ordered touch
+                popUp.GetComponentInChildren<Text>().text = "Pop the bubbles!";
+            }
+            else if (whichPuzzle == 1) {        // bug catch
+                popUp.GetComponentInChildren<Text>().text = "Squish the bugs!";
+            }
+            else if (whichPuzzle == 2) {        // avoidance path
+                popUp.GetComponentInChildren<Text>().text = "Cross the river!";
+            }
+            else if (whichPuzzle == 3) {        // TTT
+                popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!!";
+            }
+
+            StartCoroutine("StartGameForReal", curPuzzleScript);
+
+        }
+
+        IEnumerator StartGameForReal(Puzzle curPuzzleScript) {
+            yield return new WaitForSeconds(1);
+            Destroy(popUp);
             curPuzzleScript.StartGame();
         }
 
