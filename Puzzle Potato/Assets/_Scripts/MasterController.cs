@@ -13,10 +13,12 @@ namespace com.aaronandco.puzzlepotato {
         public int developerPuzzleSelection = -1;   // Refer to the tooltip
         public bool debugLogs = true;               // True if you want to see the debug logs (development)
 
-        public GameObject passToPanel;
+        public GameObject popupPrefab;
         public GameObject playerName; 
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
+
+        GameObject popUp;
 
         Timer timerScript;
         GameManager gameManagerScript;
@@ -38,11 +40,15 @@ namespace com.aaronandco.puzzlepotato {
 
             //show the next player
             playerName.GetComponent<Text>().text = gameManagerScript.players[gameManagerScript.curPlayer];
-            passToPanel.SetActive(true);
+            popUp = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false);
 
             // Cleanup and pick new game
+            StartCoroutine("nextGame"); 
+        }
+
+        IEnumerator nextGame() {
+            yield return new WaitForSeconds(.7f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            passToPanel.SetActive(false);
         }
 
         public void StartNewGame() {
@@ -56,7 +62,6 @@ namespace com.aaronandco.puzzlepotato {
             curPuzzleScript.StartGame();
         }
 
-        // TODO - Make a "You Lose" screen or somthing
         // This gets called by the timer when it hits zero
         public void TimeOut() {
             SceneManager.LoadScene(2);
