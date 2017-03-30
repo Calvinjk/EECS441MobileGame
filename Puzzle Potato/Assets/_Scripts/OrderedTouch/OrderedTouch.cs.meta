@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 4587a528b5577fe4ebab19d4bd6ba2b0
-timeCreated: 1487966269
+timeCreated: 1490843684
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - circlePrefab: {fileID: 1325820409973746, guid: 73bd8debf94d64078925fd0594ce8e13,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

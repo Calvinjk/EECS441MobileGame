@@ -7,7 +7,7 @@ namespace com.aaronandco.puzzlepotato {
     public class OrderedTouch : Puzzle {
         public int minLocations = 3;    // Minimum number of locations to spawn
         public int maxLocations = 5;    // Maximum number of locations to spawn
-        public float circleSize = 2f;   // How large of a circle to spawn
+        public float circleSize = 0.1f;   // How large of a circle to spawn
         public float minDist = 2f;    // How far apart circles must be
         public int maxAttempts = 10;    // Number of attempts to place a circle before it gives up and skips to the next one
         public GameObject circlePrefab; // What to spawn (what the circle looks like)
@@ -87,7 +87,7 @@ namespace com.aaronandco.puzzlepotato {
                 placedCircle.GetComponentInChildren<TextMesh>().text = (i + 1).ToString();      // Change the text on the circle to the correct number
 
                 circles.Add((GameObject)Instantiate(placedCircle, spawnPos, Quaternion.identity));          // Actually put the circle in the scene
-                if (debugLogs) { Debug.Log("Placing circle at (" + spawnPos.x + ", " + spawnPos.y + ")"); } 
+                if (debugLogs) { Debug.Log("Placing circle of size at (" + spawnPos.x + ", " + spawnPos.y + ")"); } 
             }
         }
 
