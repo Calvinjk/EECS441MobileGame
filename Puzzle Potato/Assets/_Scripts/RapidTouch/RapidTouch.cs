@@ -34,7 +34,7 @@ namespace com.aaronandco.puzzlepotato {
 
                 // New Circle
                 int newCircleNum = Random.Range(0, circleOptions.Count);
-                while (newCircleNum == curCircleNum) { newCircleNum = Random.Range(0, circleOptions.Count); }
+                while (newCircleNum == curCircleNum) { newCircleNum = Random.Range(0, circleOptions.Count); } // Make sure same circle never shows up twice in a row
                 if (debugLogs) { Debug.Log("Attempting to swap to circle #" + newCircleNum); }
 
                 Destroy(curCircle);
