@@ -27,7 +27,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         void Update() {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) { // If user is touching the screen
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !completed) { // If user is touching the screen
                 // Update counter
                 --currentClickCount;
                 clickCounter.GetComponent<Text>().text = currentClickCount.ToString();
