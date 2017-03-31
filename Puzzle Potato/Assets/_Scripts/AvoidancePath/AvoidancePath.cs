@@ -26,6 +26,7 @@ namespace com.aaronandco.puzzlepotato {
 
         void Awake() {
             Initialize();
+            Camera.main.backgroundColor = Color.blue;
         }
 
         void Update() {
