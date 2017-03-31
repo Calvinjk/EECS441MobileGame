@@ -128,8 +128,12 @@ namespace com.aaronandco.puzzlepotato {
 
         // Deletes selected user
         public void DeletePlayer(GameObject player) {
-            Debug.Log("deleting someone");
+            Debug.Log("deleting: " + player.GetComponentInChildren<Text>().text);
             player.SetActive(false);
+
+            // Actually delete them out of the array passed to GameManager
+            Debug.Log("Actually deleting: " + player.GetComponentInChildren<Text>().text);
+            playerNames.Remove(player.GetComponentInChildren<Text>().text);
 
             //re ordering players. this sucks lol.
             for (int i = 0; i < numPlayers; ++i) {
@@ -151,12 +155,15 @@ namespace com.aaronandco.puzzlepotato {
             playerCount.GetComponent<Text>().text = "Number  of  players: " + numPlayers;
             if (numPlayers < 2) {
                 readyButton.SetActive(false);
-            }
-
+            }      
         }
 
         // Write the current player list to the master GameManager and load the next scene
         public void ProceedToGame() {
+            Debug.Log("PlayerList:");
+            for (int i = 0; i < playerNames.Count; ++i) {
+                Debug.Log(playerNames[i]);
+            }
             Debug.Log("Starting...");
 
             gameManagerScript.players = playerNames;

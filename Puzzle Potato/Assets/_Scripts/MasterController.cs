@@ -99,8 +99,8 @@ namespace com.aaronandco.puzzlepotato {
             SceneManager.LoadScene(2);
         }
 
-        public void DisplayQuitPopup(bool open) {
-            if (open) { // Quit was pressed
+        public void DisplayQuitPopup(bool openPopup) {
+            if (openPopup) { // Quit was pressed
                 quitPopup.SetActive(true);
                 Time.timeScale = 0; // Pause
             } else { // No was pressed
