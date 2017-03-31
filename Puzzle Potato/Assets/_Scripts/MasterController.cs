@@ -71,17 +71,19 @@ namespace com.aaronandco.puzzlepotato {
 
             popUp = Instantiate(instrPrefab, GameObject.Find("Canvas").transform, false);
 
-            if (whichPuzzle == 0) {             // ordered touch
+            if (whichPuzzle == 0) {             // Ordered Touch
                 popUp.GetComponentInChildren<Text>().text = "Pop the bubbles!";
             }
-            else if (whichPuzzle == 1) {        // bug catch
+            else if (whichPuzzle == 1) {        // Bug Catch
                 popUp.GetComponentInChildren<Text>().text = "Squish the bugs!";
             }
-            else if (whichPuzzle == 2) {        // avoidance path
+            else if (whichPuzzle == 2) {        // Avoidance Path
                 popUp.GetComponentInChildren<Text>().text = "Cross the river!";
             }
             else if (whichPuzzle == 3) {        // TTT
-                popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!!";
+                popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!";
+            } else if (whichPuzzle == 4) {      // Rapid Touch
+                popUp.GetComponentInChildren<Text>().text = "Tap quickly!";
             }
 
             StartCoroutine("StartGameForReal", curPuzzleScript);
