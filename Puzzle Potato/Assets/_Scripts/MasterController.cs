@@ -16,6 +16,7 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject popupPrefab;
         public GameObject playerName; 
         public GameObject instrPrefab;
+        public GameObject quitPopup;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -98,7 +99,17 @@ namespace com.aaronandco.puzzlepotato {
             SceneManager.LoadScene(2);
         }
 
-        public void Quit() {
+        public void DisplayQuitPopup(bool open) {
+            if (open) { // Quit was pressed
+                quitPopup.SetActive(true);
+                Time.timeScale = 0; // Pause
+            } else { // No was pressed
+                quitPopup.SetActive(false);
+                Time.timeScale = 1; // Resume
+            }
+        }
+
+        public void Quit() { // Yes was pressed
             gameManagerScript.players.Clear();
             SceneManager.LoadScene(0);
         }
