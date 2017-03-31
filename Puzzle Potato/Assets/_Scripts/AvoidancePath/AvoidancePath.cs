@@ -23,6 +23,7 @@ namespace com.aaronandco.puzzlepotato {
         public float curTime = 0;
         float topBound = 5f;
         float horizontalBound = 8f;
+        bool complete = false;
 
         void Awake() {
             Initialize();
@@ -30,44 +31,47 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         void Update() {
-            if (!inProgress) {
-                if (Input.touchCount > 0) {
+            if (!complete) {
+                if (!inProgress) {
+                    if (Input.touchCount > 0) {
+                        Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                        Vector2 touchPos = new Vector2(wp.x, wp.y);
+                        Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
+                        if (colInfo != null) { // StartingArea was touched
+                            if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
+                            SwapMode();
+                        }
+                    }
+                } else { // inProgress == true
+                    curTime -= Time.deltaTime;
+                    if (curTime < 0) {
+                        curTime = spawnFrequency;
+                        float blockSize = Random.Range(minSize, maxSize);
+                        int hPos = Random.Range((int)-4, (int)5);
+                        GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize / 2), 0), Quaternion.identity) as GameObject;
+                        block.transform.localScale = new Vector3(1, blockSize, 1);
+
+                        FallDown blockScript = (FallDown)block.GetComponent("FallDown");
+                        blockScript.speed = Random.Range(minSpeed, maxSpeed);
+
+                        blocks.Add(block);
+                    }
+                    if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
+                        if (debugLogs) { Debug.Log("Player lifted finger off screen"); }
+                        SwapMode();
+                    }
+
+                    // Check if player won or touched a falling block
                     Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                     Vector2 touchPos = new Vector2(wp.x, wp.y);
                     Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                    if (colInfo != null) { // StartingArea was touched
-                        if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
-                        SwapMode();
-                    }
-                }
-            } else { // inProgress == true
-                curTime -= Time.deltaTime;
-                if (curTime < 0) {
-                    curTime = spawnFrequency;
-                    float blockSize = Random.Range(minSize, maxSize);
-                    int hPos = Random.Range((int)-4, (int)5);
-                    GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize / 2), 0), Quaternion.identity) as GameObject;
-                    block.transform.localScale = new Vector3(1, blockSize, 1);
-
-                    FallDown blockScript = (FallDown)block.GetComponent("FallDown");
-                    blockScript.speed = Random.Range(minSpeed, maxSpeed);
-
-                    blocks.Add(block);
-                }
-                if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
-                    if (debugLogs) { Debug.Log("Player lifted finger off screen"); }
-                    SwapMode();
-                }
-
-                // Check if player won or touched a falling block
-                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                Vector2 touchPos = new Vector2(wp.x, wp.y);
-                Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                if (colInfo != null) {
-                    if (colInfo.gameObject.name == "EndArea") {
-                        GameCompleted();
-                    } else { // Falling block was touched
-                        SwapMode();
+                    if (colInfo != null) {
+                        if (colInfo.gameObject.name == "EndArea") {
+                            GameCompleted();
+                            complete = true;
+                        } else { // Falling block was touched
+                            SwapMode();
+                        }
                     }
                 }
             }
