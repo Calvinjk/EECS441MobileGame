@@ -155,11 +155,7 @@ namespace com.aaronandco.puzzlepotato {
             playerCount.GetComponent<Text>().text = "Number  of  players: " + numPlayers;
             if (numPlayers < 2) {
                 readyButton.SetActive(false);
-            }
-
-            if (numPlayers < 8) {
-                addPlayerButton.SetActive(true);
-            }
+            }      
         }
 
         // Write the current player list to the master GameManager and load the next scene
