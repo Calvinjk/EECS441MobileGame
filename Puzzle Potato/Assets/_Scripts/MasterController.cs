@@ -83,7 +83,7 @@ namespace com.aaronandco.puzzlepotato {
             else if (whichPuzzle == 3) {        // TTT
                 popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!";
             } else if (whichPuzzle == 4) {      // Rapid Touch
-                popUp.GetComponentInChildren<Text>().text = "Tap quickly!";
+                popUp.GetComponentInChildren<Text>().text = "Remember how many times to tap!";
             }
 
             StartCoroutine("StartGameForReal", curPuzzleScript);
