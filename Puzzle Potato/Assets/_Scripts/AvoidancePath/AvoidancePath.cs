@@ -17,7 +17,7 @@ namespace com.aaronandco.puzzlepotato {
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
-        GameObject potato = new GameObject("POTATO");
+        GameObject potato;
         
         public List<GameObject> blocks;
         GameObject startingAreaInstance;
@@ -31,15 +31,18 @@ namespace com.aaronandco.puzzlepotato {
         void Awake() {
             Initialize();
             startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0), Quaternion.identity);
-            endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
-            endingAreaInstance.name = "EndArea";
-            endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
+            startingAreaInstance.name = "Starting Area";
 
             Camera.main.backgroundColor = new Color32(51, 153, 255, 1);
 
+            potato = new GameObject("POTATO");
             potato.AddComponent<SpriteRenderer>().sprite = cutePotato;
             potato.GetComponent<Transform>().position = new Vector3(-7f, 0, -1f);
             potato.GetComponent<Transform>().localScale = new Vector3(.25f, .25f, .25f);
+
+            endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
+            endingAreaInstance.name = "EndArea";
+            endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
         }
 
         void Update() {
@@ -52,7 +55,7 @@ namespace com.aaronandco.puzzlepotato {
                         Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
                         moveSprite(wp);
 
-                        if (colInfo != null) { // StartingArea was touched
+                        if (colInfo != null && colInfo.name == "Starting Area") { // StartingArea was touched
                             if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
                             SwapMode();
                         }
@@ -85,7 +88,8 @@ namespace com.aaronandco.puzzlepotato {
                         if (colInfo.gameObject.name == "EndArea") {
                             GameCompleted();
                             complete = true;
-                        } else { // Falling block was touched
+                        } else if (colInfo.gameObject.name != "Starting Area") { // Falling block was touched
+                            if (debugLogs) { Debug.Log("Player touched a block"); }
                             SwapMode();
                         }
                     }
@@ -109,15 +113,17 @@ namespace com.aaronandco.puzzlepotato {
                 blocks.Clear();
 
                 // Re-spawn the starting area
-                // startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0, 0), Quaternion.identity);
-                // Destroy(endingAreaInstance);
+                //startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0, 0), Quaternion.identity);
+                //startingAreaInstance.name = "Starting Area";
+                //Destroy(endingAreaInstance);
             } else {
                 // Swap mode
                 inProgress = true;
-                // Destroy(startingAreaInstance);
-                // endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
-                // endingAreaInstance.name = "EndArea";
-                // endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
+
+                //Destroy(startingAreaInstance);
+                //endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
+                //endingAreaInstance.name = "EndArea";
+                //endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
 
                 //Spawn a bunch of starting blocks
                 List<int> positions = new List<int>();
@@ -146,10 +152,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public override void StartGame() {
-            // startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0), Quaternion.identity);
-            // endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
-            // endingAreaInstance.name = "EndArea";
-            // endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
+
         }
     }
 }
