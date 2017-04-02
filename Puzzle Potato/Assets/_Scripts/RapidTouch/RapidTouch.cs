@@ -50,13 +50,14 @@ namespace com.aaronandco.puzzlepotato {
                 // New Circle
                 int newCircleNum = Random.Range(0, circleOptions.Count);
                 while (newCircleNum == curCircleNum) { newCircleNum = Random.Range(0, circleOptions.Count); } // Make sure same circle never shows up twice in a row
-                if (debugLogs) { Debug.Log("Attempting to swap to circle #" + newCircleNum); }
+                if (debugLogs) { Debug.Log("Attempting to swap to circle #" + newCircleNum + " from circle #" + curCircleNum); }
 
                 Destroy(curCircle);
                 curCircle = Instantiate(circleOptions[newCircleNum], new Vector3(0, 0, -1), Quaternion.identity);
+                curCircleNum = newCircleNum;
             }
 
-            if (debugLogs) { Debug.Log("Current click count: " + currentClickCount); }
+            //if (debugLogs) { Debug.Log("Current click count: " + currentClickCount); }
             if (currentClickCount < -1 && !completed) {
                 Restart(true);
                 completed = true;
