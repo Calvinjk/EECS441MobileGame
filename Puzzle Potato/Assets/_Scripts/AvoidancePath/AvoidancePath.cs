@@ -7,7 +7,7 @@ namespace com.aaronandco.puzzlepotato {
 
         public GameObject goalArea;
         public GameObject fallingBlock;
-        public Sprite cutePotato;
+        public GameObject potatoBoatPrefab;
         public float spawnFrequency = 0.5f;
         public float minSpeed = 10f;
         public float maxSpeed = 30f;
@@ -35,10 +35,10 @@ namespace com.aaronandco.puzzlepotato {
 
             Camera.main.backgroundColor = new Color32(51, 153, 255, 1);
 
-            potato = new GameObject("POTATO");
-            potato.AddComponent<SpriteRenderer>().sprite = cutePotato;
+            // Create the "player"
+            potato = Instantiate(potatoBoatPrefab);
+
             potato.GetComponent<Transform>().position = new Vector3(-7f, 0, -1f);
-            potato.GetComponent<Transform>().localScale = new Vector3(.25f, .25f, .25f);
 
             endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
             endingAreaInstance.name = "EndArea";
@@ -53,7 +53,7 @@ namespace com.aaronandco.puzzlepotato {
                         Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                         Vector2 touchPos = new Vector2(wp.x, wp.y);
                         Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                        moveSprite(wp);
+                        movePotato(wp);
 
                         if (colInfo != null && colInfo.name == "Starting Area") { // StartingArea was touched
                             if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
@@ -83,7 +83,7 @@ namespace com.aaronandco.puzzlepotato {
                     Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                     Vector2 touchPos = new Vector2(wp.x, wp.y);
                     Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                    moveSprite(wp);
+                    movePotato(wp);
                     if (colInfo != null) {
                         if (colInfo.gameObject.name == "EndArea") {
                             GameCompleted();
@@ -97,7 +97,7 @@ namespace com.aaronandco.puzzlepotato {
             }
         }
 
-        void moveSprite(Vector3 wp) {
+        void movePotato(Vector3 wp) {
             potato.GetComponent<Transform>().position = new Vector3(wp.x, wp.y, -1f); 
         }
 
