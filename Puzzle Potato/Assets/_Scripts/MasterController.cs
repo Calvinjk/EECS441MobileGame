@@ -82,7 +82,8 @@ namespace com.aaronandco.puzzlepotato {
             }
             else if (whichPuzzle == 3) {        // TTT
                 popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!";
-            } else if (whichPuzzle == 4) {      // Rapid Touch
+            } 
+            else if (whichPuzzle == 4) {      // Rapid Touch
                 popUp.GetComponentInChildren<Text>().text = "Remember how many times to tap!";
             }
 
@@ -115,7 +116,6 @@ namespace com.aaronandco.puzzlepotato {
                     popUp.SetActive(true);
                 }
                 Time.timeScale = 1; // Resume
-
             }
         }        
 

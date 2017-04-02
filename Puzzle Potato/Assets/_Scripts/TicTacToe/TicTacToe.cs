@@ -58,6 +58,7 @@ namespace com.aaronandco.puzzlepotato {
                         if (boardStatus[(int)gridSpaceName[0] - 48, (int)gridSpaceName[1] - 48] == -1) { // Need to subtract 48 because of ASCII values
                             boardStatus[(int)gridSpaceName[0] - 48, (int)gridSpaceName[1] - 48] = 1;
                             colInfo.gameObject.GetComponent<SpriteRenderer>().sprite = xSprite;
+                            colInfo.transform.localScale = new Vector3(.1f, .1f, .1f);
                             // Check for a full board
                             int placed = 0;
                             for (int i = 0; i < 3; ++i) {
@@ -87,6 +88,7 @@ namespace com.aaronandco.puzzlepotato {
                     GameObject target = GameObject.Find(row.ToString() + col.ToString());
                     boardStatus[row, col] = 0;
                     target.GetComponent<SpriteRenderer>().sprite = oSprite;
+                    target.transform.localScale = new Vector3(.1f, .1f, .1f);
                     aiMove = false;
                     CheckWin(0);
                 }             
