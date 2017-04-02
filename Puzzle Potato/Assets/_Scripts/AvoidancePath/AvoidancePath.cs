@@ -49,7 +49,7 @@ namespace com.aaronandco.puzzlepotato {
 
             if (!complete) {
                 if (!inProgress) {
-                    if (Input.touchCount > 0) {
+                    if (Input.touchCount == 1) {
                         Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                         Vector2 touchPos = new Vector2(wp.x, wp.y);
                         Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
