@@ -105,11 +105,19 @@ namespace com.aaronandco.puzzlepotato {
             if (openPopup) { // Quit was pressed
                 quitPopup.SetActive(true);
                 Time.timeScale = 0; // Pause
+                if (popUp) {
+                    popUp.SetActive(false);
+                }
+                Debug.Log("PAUSING");
             } else { // No was pressed
                 quitPopup.SetActive(false);
+                if (popUp) {
+                    popUp.SetActive(true);
+                }
                 Time.timeScale = 1; // Resume
+
             }
-        }
+        }        
 
         public void Quit() { // Yes was pressed
             gameManagerScript.players.Clear();
