@@ -99,21 +99,21 @@ namespace com.aaronandco.puzzlepotato {
             // Check rows
             for (int i = 0; i < 3; ++i) {
                 if (boardStatus[i, 0] == player && boardStatus[i, 1] == player && boardStatus[i, 2] == player) {
-                    if (player == 1) { GameCompleted(); } else { GameFailed(); }
+                    if (player == 1) { GameCompleted(); return; } else { GameFailed(); return; }
                 }
             }
 
             // Check columns
             for (int i = 0; i < 3; ++i) {
                 if (boardStatus[0, i] == player && boardStatus[1, i] == player && boardStatus[2, i] == player) {
-                    if (player == 1) { GameCompleted(); } else { GameFailed(); }
+                    if (player == 1) { GameCompleted(); return; } else { GameFailed(); return; }
                 }
             }
 
             // Check diagonals
             if (boardStatus[0, 0] == player && boardStatus[1, 1] == player && boardStatus[2, 2] == player ||
                 boardStatus[0, 2] == player && boardStatus[1, 1] == player && boardStatus[2, 0] == player) {
-                if (player == 1) { GameCompleted(); } else { GameFailed(); }
+                if (player == 1) { GameCompleted(); return; } else { GameFailed(); return; }
             }
 
             // Check Tie
@@ -125,7 +125,7 @@ namespace com.aaronandco.puzzlepotato {
                     }
                 }
             }
-            if (placed == 9) { GameFailed(); }
+            if (placed == 9) { GameFailed(); return; }
         }
 
         void GameFailed() {

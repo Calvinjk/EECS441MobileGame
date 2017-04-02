@@ -109,7 +109,6 @@ namespace com.aaronandco.puzzlepotato {
                 if (popUp) {
                     popUp.SetActive(false);
                 }
-                Debug.Log("PAUSING");
             } else { // No was pressed
                 quitPopup.SetActive(false);
                 if (popUp) {
