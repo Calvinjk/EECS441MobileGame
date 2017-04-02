@@ -111,10 +111,10 @@ namespace com.aaronandco.puzzlepotato {
                 }
             } else { // No was pressed
                 quitPopup.SetActive(false);
+                Time.timeScale = 1; // Resume
                 if (popUp) {
                     popUp.SetActive(true);
                 }
-                Time.timeScale = 1; // Resume
             }
         }        
 
