@@ -12,7 +12,7 @@ namespace com.aaronandco.puzzlepotato {
         public int maxClicks = 50;
         public int minClicks = 25;
         public float showNumberTime = 2f;
-        public float checkAnswerIdleTime = 2f;
+        public float checkAnswerIdleTime = 1f;
         public GameObject number;
         public GameObject youLosePanelPrefab;
         public bool debugLogs = true;
@@ -57,7 +57,6 @@ namespace com.aaronandco.puzzlepotato {
                 curCircleNum = newCircleNum;
             }
 
-            //if (debugLogs) { Debug.Log("Current click count: " + currentClickCount); }
             if (currentClickCount < -1 && !completed) {
                 Restart(true);
                 completed = true;
