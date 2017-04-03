@@ -9,6 +9,7 @@ namespace com.aaronandco.puzzlepotato {
 	public class LoseController : MonoBehaviour {
 
 		public GameObject loserName;
+		public GameObject nextPlayer;  
 
 		GameManager gameManagerScript;
 
@@ -18,8 +19,14 @@ namespace com.aaronandco.puzzlepotato {
 			loserName.GetComponent<Text>().text = gameManagerScript.players[gameManagerScript.curPlayer];
 		}
 
-		public void ContinueGame() {
+		public void ShowPopUp() {
+            nextPlayer.transform.GetChild(1).gameObject.GetComponent<Text>().text = gameManagerScript.players[gameManagerScript.curPlayer] + ",  please  press  when  ready!";
+            nextPlayer.SetActive(true);
+		}
+
+		public void ReplayGame() {
 			UnityEngine.Debug.Log("continuing");
+
 			gameManagerScript.curTime = gameManagerScript.maxTime;
 			SceneManager.LoadScene(1);
 		}

@@ -25,8 +25,8 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject addPlayerButton;
         public GameObject backButton;
         public GameObject playButton;
-        public Text beginButtonText;
-        // public GameObject playerButton;
+        public GameObject beginButton; 
+
         public GameManager gameManagerScript;
 
         public List<string> playerNames = new List<string>();
@@ -95,7 +95,8 @@ namespace com.aaronandco.puzzlepotato {
                     startPanel.SetActive(true);
 
                     gameManagerScript.curPlayer = UnityEngine.Random.Range(0, numPlayers - 1);
-                    beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ",  please  press  the  button  when  ready!";
+
+                    beginButton.transform.GetChild(1).gameObject.GetComponent<Text>().text = playerNames[gameManagerScript.curPlayer] + ",  please  press  when  ready!";
                     break;
                 default:
                     Debug.LogWarning("Incorrect view selection");
