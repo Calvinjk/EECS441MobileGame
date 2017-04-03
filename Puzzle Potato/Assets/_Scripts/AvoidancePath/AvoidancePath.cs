@@ -53,7 +53,7 @@ namespace com.aaronandco.puzzlepotato {
             if (Input.touchCount == 1) {
                 potato.SetActive(true);
                 Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                movePotato(wp);
+                movePotato(new Vector3(wp.x, wp.y, -1f));
             }
 
             if (!complete) {
@@ -77,7 +77,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         void movePotato(Vector3 wp) {
-            potato.GetComponent<Transform>().position = new Vector3(wp.x, wp.y, -1f); 
+            potato.transform.position = Vector3.Lerp(potato.transform.position, wp, .25f);
         }
 
         public void SwapMode(bool inGame) {
