@@ -103,7 +103,7 @@ namespace com.aaronandco.puzzlepotato {
         IEnumerator RestartGame() {
             yield return new WaitForSeconds(2f);
 
-            // Restart and reset variables --TODO
+            // Restart and reset variables
             curTime = showNumberTime;
             curIdleTime = checkAnswerIdleTime;
 

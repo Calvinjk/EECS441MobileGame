@@ -26,7 +26,7 @@ namespace com.aaronandco.puzzlepotato {
         public float curTime = 0;
         float topBound = 5f;
         float horizontalBound = 8f;
-        bool complete = false;
+        public bool complete = false;
 
         void Awake() {
             Initialize();
@@ -38,29 +38,26 @@ namespace com.aaronandco.puzzlepotato {
             // Create the "player"
             potato = Instantiate(potatoBoatPrefab);
 
-            potato.GetComponent<Transform>().position = new Vector3(-7f, 0, -1f);
-
             endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
             endingAreaInstance.name = "EndArea";
             endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
         }
 
         void Update() {
+            // Check if player is touching the screen
+            if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
+                potato.SetActive(false);
+                SwapMode(true);
+            }
+
+            if (Input.touchCount == 1) {
+                potato.SetActive(true);
+                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                movePotato(wp);
+            }
 
             if (!complete) {
-                if (!inProgress) {
-                    if (Input.touchCount == 1) {
-                        Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                        Vector2 touchPos = new Vector2(wp.x, wp.y);
-                        Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                        movePotato(wp);
-
-                        if (colInfo != null && colInfo.name == "Starting Area") { // StartingArea was touched
-                            if (debugLogs) { Debug.Log("Player's finger is in starting area"); }
-                            SwapMode();
-                        }
-                    }
-                } else { // inProgress == true
+                if (inProgress) {
                     curTime -= Time.deltaTime;
                     if (curTime < 0) {
                         curTime = spawnFrequency;
@@ -68,30 +65,12 @@ namespace com.aaronandco.puzzlepotato {
                         int hPos = Random.Range((int)-4, (int)5);
                         GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize / 2), 0), Quaternion.identity) as GameObject;
                         block.transform.localScale = new Vector3(1, blockSize, 1);
+                        block.name = "Log";
 
                         FallDown blockScript = (FallDown)block.GetComponent("FallDown");
                         blockScript.speed = Random.Range(minSpeed, maxSpeed);
 
                         blocks.Add(block);
-                    }
-                    if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
-                        if (debugLogs) { Debug.Log("Player lifted finger off screen"); }
-                        SwapMode();
-                    }
-
-                    // Check if player won or touched a falling block
-                    Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                    Vector2 touchPos = new Vector2(wp.x, wp.y);
-                    Collider2D colInfo = Physics2D.OverlapPoint(touchPos);
-                    movePotato(wp);
-                    if (colInfo != null) {
-                        if (colInfo.gameObject.name == "EndArea") {
-                            GameCompleted();
-                            complete = true;
-                        } else if (colInfo.gameObject.name != "Starting Area") { // Falling block was touched
-                            if (debugLogs) { Debug.Log("Player touched a block"); }
-                            SwapMode();
-                        }
                     }
                 }
             }
@@ -101,8 +80,8 @@ namespace com.aaronandco.puzzlepotato {
             potato.GetComponent<Transform>().position = new Vector3(wp.x, wp.y, -1f); 
         }
 
-        void SwapMode() {
-            if (inProgress) {
+        public void SwapMode(bool inGame) {
+            if (inGame) {
                 // Swap mode
                 inProgress = false;
 
@@ -112,18 +91,10 @@ namespace com.aaronandco.puzzlepotato {
                 }
                 blocks.Clear();
 
-                // Re-spawn the starting area
-                //startingAreaInstance = Instantiate(goalArea, new Vector3(-horizontalBound, 0, 0), Quaternion.identity);
-                //startingAreaInstance.name = "Starting Area";
-                //Destroy(endingAreaInstance);
+                // Blow up the potato? --  TODO
             } else {
                 // Swap mode
                 inProgress = true;
-
-                //Destroy(startingAreaInstance);
-                //endingAreaInstance = Instantiate(goalArea, new Vector3(horizontalBound, 0, 0), Quaternion.identity);
-                //endingAreaInstance.name = "EndArea";
-                //endingAreaInstance.GetComponentInChildren<TextMesh>().text = "End";
 
                 //Spawn a bunch of starting blocks
                 List<int> positions = new List<int>();
@@ -142,6 +113,7 @@ namespace com.aaronandco.puzzlepotato {
 
                     GameObject block = Instantiate(fallingBlock, new Vector3(hPos, vPos, 0), Quaternion.identity) as GameObject;
                     block.transform.localScale = new Vector3(1, blockSize, 1);
+                    block.name = "Log";
 
                     FallDown blockScript = (FallDown)block.GetComponent("FallDown");
                     blockScript.speed = Random.Range(minSpeed, maxSpeed);
@@ -149,6 +121,11 @@ namespace com.aaronandco.puzzlepotato {
                     blocks.Add(block);
                 }
             }
+        }
+
+        public void ThePotatoDidIt() {
+            if (!complete) { GameCompleted(); }
+            complete = true;
         }
 
         public override void StartGame() {
