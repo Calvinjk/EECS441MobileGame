@@ -105,7 +105,9 @@ namespace com.aaronandco.puzzlepotato {
 
         // Adds a new player to the list, updates on screen information to reflect this
         public void AddPlayerToList () {
+            instruction.text = "please  enter  between  2  and  8  players";
             if (playerNameInput.text == "") {
+            	instruction.text = "please  enter  a  player  name";
                 return;
             }
             if (numPlayers >= 1) {
