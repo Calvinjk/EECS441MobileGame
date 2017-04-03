@@ -86,6 +86,9 @@ namespace com.aaronandco.puzzlepotato {
             else if (whichPuzzle == 4) {      // Rapid Touch
                 popUp.GetComponentInChildren<Text>().text = "Remember how many times to tap!";
             }
+            else if (whichPuzzle == 5) {      // Matching
+                popUp.GetComponentInChildren<Text>().text = "Find all the matches!";
+            }
 
             StartCoroutine("StartGameForReal", curPuzzleScript);
 

@@ -25,8 +25,8 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject addPlayerButton;
         public GameObject backButton;
         public GameObject playButton;
-        public Text beginButtonText;
-        // public GameObject playerButton;
+        public GameObject beginButton; 
+
         public GameManager gameManagerScript;
 
         public List<string> playerNames = new List<string>();
@@ -36,7 +36,7 @@ namespace com.aaronandco.puzzlepotato {
         void Awake() {
             SetView(0);
             gameManagerScript = (GameManager)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManager");
-
+            playerNameInput.characterLimit = 12;
         }
 
         // Sets which view is active
@@ -95,7 +95,8 @@ namespace com.aaronandco.puzzlepotato {
                     startPanel.SetActive(true);
 
                     gameManagerScript.curPlayer = UnityEngine.Random.Range(0, numPlayers - 1);
-                    beginButtonText.text = playerNames[gameManagerScript.curPlayer] + ",  please  press  the  button  when  ready!";
+
+                    beginButton.transform.GetChild(1).gameObject.GetComponent<Text>().text = playerNames[gameManagerScript.curPlayer] + ",  please  press  when  ready!";
                     break;
                 default:
                     Debug.LogWarning("Incorrect view selection");
@@ -105,7 +106,9 @@ namespace com.aaronandco.puzzlepotato {
 
         // Adds a new player to the list, updates on screen information to reflect this
         public void AddPlayerToList () {
+            instruction.text = "please  enter  between  2  and  8  players";
             if (playerNameInput.text == "") {
+            	instruction.text = "please  enter  a  player  name";
                 return;
             }
             if (numPlayers >= 1) {
