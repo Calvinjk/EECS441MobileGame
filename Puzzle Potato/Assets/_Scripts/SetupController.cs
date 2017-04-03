@@ -36,7 +36,7 @@ namespace com.aaronandco.puzzlepotato {
         void Awake() {
             SetView(0);
             gameManagerScript = (GameManager)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManager");
-
+            playerNameInput.characterLimit = 12;
         }
 
         // Sets which view is active
