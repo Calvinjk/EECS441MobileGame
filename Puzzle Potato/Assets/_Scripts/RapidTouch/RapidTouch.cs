@@ -35,7 +35,7 @@ namespace com.aaronandco.puzzlepotato {
             curIdleTime = checkAnswerIdleTime;
         }
 
-        void Update() {
+        void FixedUpdate() {
             // Assume player is idle unless screen touched
             curIdleTime -= Time.deltaTime;
 
