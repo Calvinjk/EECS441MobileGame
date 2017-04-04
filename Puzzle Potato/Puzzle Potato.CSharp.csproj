@@ -97,6 +97,7 @@
     <Compile Include="Assets\_Scripts\TicTacToe\ReplayTTT.cs" />
     <Compile Include="Assets\_Scripts\TicTacToe\TicTacToe.cs" />
     <Compile Include="Assets\_Scripts\Timer.cs" />
+    <Compile Include="Assets\_Scripts\TimingBar\TimingBar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
