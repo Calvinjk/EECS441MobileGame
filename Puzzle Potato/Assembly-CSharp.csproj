@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\AvoidancePath\AvoidancePath.cs" />
      <Compile Include="Assets\_Scripts\AvoidancePath\FallDown.cs" />
-     <Compile Include="Assets\_Scripts\AvoidancePath\PotatoBoatController.cs" />
      <Compile Include="Assets\_Scripts\BugCatch\BugCatch.cs" />
      <Compile Include="Assets\_Scripts\BugCatch\BugController.cs" />
      <Compile Include="Assets\_Scripts\GameManager.cs" />
