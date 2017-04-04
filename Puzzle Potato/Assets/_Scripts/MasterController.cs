@@ -89,7 +89,7 @@ namespace com.aaronandco.puzzlepotato {
             else if (whichPuzzle == 5) {        // Matching
                 popUp.GetComponentInChildren<Text>().text = "Find all the matches!";
             }
-            else if (whichPuzzle == 5) {        // TimingBar
+            else if (whichPuzzle == 6) {        // TimingBar
                 popUp.GetComponentInChildren<Text>().text = "Tap when the arrow is in the green!";
             }
 

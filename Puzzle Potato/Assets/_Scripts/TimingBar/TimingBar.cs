@@ -12,16 +12,20 @@ namespace com.aaronandco.puzzlepotato {
 
         public GameObject blackBarPrefab;
         public GameObject goalAreaPrefab;
+        public GameObject blackArrowPrefab;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         GameObject goalArea;
+        GameObject arrow;
 
         public override void StartGame() {
             // Set up the graphics
             Instantiate(blackBarPrefab, new Vector3(horizontalSpawnLocation, 0, 0), Quaternion.identity);
             goalArea = Instantiate(goalAreaPrefab, new Vector3(horizontalSpawnLocation, Random.Range(-maxGoalSpawnLocation, maxGoalSpawnLocation), -1), Quaternion.identity);
             goalArea.transform.localScale = new Vector3(1, Random.Range(minSize, maxSize), 1);
+
+            arrow = Instantiate(blackArrowPrefab, new Vector3(0, 3, 0), Quaternion.identity);
         }
     }
 }
