@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 53d0e45c4078a3a40941e1eab1a7b181
+timeCreated: 1491409454
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Question: {instanceID: 0}
+  - Ans: {instanceID: 0}
+  - Ans1: {instanceID: 0}
+  - Ans2: {instanceID: 0}
+  - Ans3: {instanceID: 0}
+  - Ans4: {instanceID: 0}
+  - Ans5: {instanceID: 0}
+  - buttonPrefab: {fileID: 166794, guid: 11fd05dcc4ed6b74ab1f0b2e31b77fee, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
