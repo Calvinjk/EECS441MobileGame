@@ -37,6 +37,9 @@ namespace com.aaronandco.puzzlepotato {
             SetView(0);
             gameManagerScript = (GameManager)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManager");
             playerNameInput.characterLimit = 12;
+
+            // Stop screen from dimming or going into sleep mode
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
         // Sets which view is active
