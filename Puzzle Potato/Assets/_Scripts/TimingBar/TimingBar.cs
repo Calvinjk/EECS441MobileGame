@@ -13,6 +13,7 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject blackBarPrefab;
         public GameObject goalAreaPrefab;
         public GameObject blackArrowPrefab;
+        public GameObject failBarPrefab;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -26,6 +27,13 @@ namespace com.aaronandco.puzzlepotato {
             goalArea.transform.localScale = new Vector3(1, Random.Range(minSize, maxSize), 1);
 
             arrow = Instantiate(blackArrowPrefab, new Vector3(0, 3, 0), Quaternion.identity);
+
+            // Testing -- TODO
+            // Spawn boundaries on goal checking
+        }
+
+        void FixedUpdate() {
+
         }
     }
 }
