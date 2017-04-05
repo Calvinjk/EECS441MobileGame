@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\AvoidancePath\AvoidancePath.cs" />
     <Compile Include="Assets\_Scripts\AvoidancePath\FallDown.cs" />
+    <Compile Include="Assets\_Scripts\AvoidancePath\PotatoBoatController.cs" />
     <Compile Include="Assets\_Scripts\BugCatch\BugCatch.cs" />
     <Compile Include="Assets\_Scripts\BugCatch\BugController.cs" />
     <Compile Include="Assets\_Scripts\GameManager.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Assets\_Scripts\TicTacToe\ReplayTTT.cs" />
     <Compile Include="Assets\_Scripts\TicTacToe\TicTacToe.cs" />
     <Compile Include="Assets\_Scripts\Timer.cs" />
+    <Compile Include="Assets\_Scripts\TimingBar\PeriodicMotion.cs" />
+    <Compile Include="Assets\_Scripts\TimingBar\TimingBar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

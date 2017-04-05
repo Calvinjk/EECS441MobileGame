@@ -25,5 +25,9 @@ namespace com.aaronandco.puzzlepotato {
         public void ShowCurrentPlayer(Text currentPlayerText) {
             currentPlayerText.text = "Current  Player:  " + players[curPlayer];
         }
+
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); } // Back button on Android
+        }
     }
 }
