@@ -28,6 +28,7 @@ namespace com.aaronandco.puzzlepotato {
         GameObject clickCounter;
         GameObject losePopup;
         bool completed = false;
+        bool screenTouched = false;
 
         void Awake() {
             Initialize();
@@ -39,7 +40,17 @@ namespace com.aaronandco.puzzlepotato {
             // Assume player is idle unless screen touched
             curIdleTime -= Time.deltaTime;
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !completed) { // If user is touching the screen
+            // Assume last frame has been dealt with 
+            screenTouched = false;
+
+            // Cycle through touches and if there is a finger that just touched, run the countdown code
+            foreach (Touch touch in Input.touches) {
+                if (touch.phase == TouchPhase.Began) {
+                    screenTouched = true;
+                }
+            }
+
+            if (screenTouched && !completed) { // If user is touching the screen
                 // Update counter
                 --currentClickCount;
                 clickCounter.GetComponent<Text>().text = currentClickCount.ToString();
