@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 using System.IO;
 using System.Reflection;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+
+using quiz_helper;
 
 namespace com.aaronandco.puzzlepotato {
 	public class QuizController : Puzzle {
@@ -73,7 +76,9 @@ namespace com.aaronandco.puzzlepotato {
 		// Use this for initialization
 
 		void Start(){
-
+			//the following call makes sure our file already exists
+			Helper help = new quiz_helper.Helper();
+			help.check_and_create();
 			Initialize();
 		}
 
@@ -125,33 +130,28 @@ namespace com.aaronandco.puzzlepotato {
 			//		  choose a file at random after getting these filenames 
 			//		  (maybe give them a special extension?)
 			//        FOR NOW, just going to open the file
-			//int num_lines = File.ReadAllLines(@"Assets\\_Scripts\\Quiz\\music_questions.txt").Length;
-			//Path.Combine(str1, str2 ...);
-			string current_dir = Directory.GetCurrentDirectory();
+
+			string current_dir = Path.Combine(Application.persistentDataPath, "quizData.dat");
 			if(debugLogs){ Debug.Log(current_dir); }
-			current_dir = Path.Combine(current_dir, "Assets");
-			current_dir = Path.Combine(current_dir, "_Scripts");
-			current_dir = Path.Combine(current_dir, "Quiz");
-			string location = Path.Combine(current_dir, "music_questions.txt");
 
 
-			//string[] path_of_txt = Directory.GetFiles(current_dir, "music_questions.txt");
-			if(debugLogs){ Debug.Log(location); }
-			int num_lines = File.ReadAllLines(location).Length;
-			//step 2: Choose a question from the file at random
+			if(!File.Exists(Path.Combine(Application.persistentDataPath, "quizData.dat"))){
+				GameCompleted();
+			}
+
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = new FileStream(Path.Combine(Application.persistentDataPath, "quizData.dat"), FileMode.Open, FileAccess.Read, FileShare.None);
+			QuizData data = (QuizData)bf.Deserialize(file);
+			file.Close();
+			//step 2: Choose a question from the array at random
 			//        must make use of a line counter for files to do this
 			System.Random rand = new System.Random();
-			int skip_lines = rand.Next(0, num_lines);
 
-			using( Stream fs = File.Open(location, FileMode.Open) ){
-	   			using( StreamReader reader = new StreamReader(fs) ){
-	        		string line = null;
-	        		for( int i = 0; i < skip_lines; ++i ){
-	            		line = reader.ReadLine();
-	        		}
-	        		selected_line = line;
-	    		}
-			}
+			int upper_limit = data.questions.Count;
+
+			int line = rand.Next(0, upper_limit);
+
+			selected_line = data.questions[line];
 
 			if(debugLogs){ Debug.Log(selected_line); }
 
@@ -326,6 +326,9 @@ namespace com.aaronandco.puzzlepotato {
 
 	}
 }//END namespace puzzepotato
+
+
+//data container class
 
 //APPENDIX
 
