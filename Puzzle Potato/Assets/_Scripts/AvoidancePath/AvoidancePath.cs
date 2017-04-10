@@ -24,7 +24,7 @@ namespace com.aaronandco.puzzlepotato {
         GameObject endingAreaInstance;
         public bool inProgress = false;
         public float curTime = 0;
-        float topBound = 5f;
+        float topBound = 6f;
         float horizontalBound = 8f;
         public bool complete = false;
 
@@ -63,7 +63,7 @@ namespace com.aaronandco.puzzlepotato {
                         curTime = spawnFrequency;
                         float blockSize = Random.Range(minSize, maxSize);
                         int hPos = Random.Range((int)-4, (int)5);
-                        GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize / 2), 0), Quaternion.identity) as GameObject;
+                        GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize - 1), 0), Quaternion.identity) as GameObject;
                         block.transform.localScale = new Vector3(1, blockSize, 1);
                         block.name = "Log";
 

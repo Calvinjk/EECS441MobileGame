@@ -92,6 +92,7 @@
     <Compile Include="Assets\_Scripts\Matching\Matching.cs" />
     <Compile Include="Assets\_Scripts\OrderedTouch\OrderedTouch.cs" />
     <Compile Include="Assets\_Scripts\Puzzle.cs" />
+    <Compile Include="Assets\_Scripts\Quiz\QuizController.cs" />
     <Compile Include="Assets\_Scripts\RapidTouch\RapidTouch.cs" />
     <Compile Include="Assets\_Scripts\SetupController.cs" />
     <Compile Include="Assets\_Scripts\TicTacToe\ReplayTTT.cs" />
@@ -99,6 +100,9 @@
     <Compile Include="Assets\_Scripts\Timer.cs" />
     <Compile Include="Assets\_Scripts\TimingBar\PeriodicMotion.cs" />
     <Compile Include="Assets\_Scripts\TimingBar\TimingBar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\_Scripts\Quiz\music_questions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

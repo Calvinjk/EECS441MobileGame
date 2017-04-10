@@ -48,8 +48,8 @@ namespace com.aaronandco.puzzlepotato {
             Debug.Log("UPDATING TTTT");
 
             if (!pause) {
-                if (Input.GetMouseButtonDown(0)) { // If user is touching the screen
-                // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {     // Make sure only one finger was used and it is coming off the screen
+                //if (Input.GetMouseButtonDown(0)) { // If user is touching the screen
+                if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {     // Make sure only one finger was used and it is coming off the screen
                     if (debugLogs) { Debug.Log("Finger attempted to touch something"); }
                     Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // Get the world coordinates of the screen touch
                     // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch

@@ -125,6 +125,9 @@ namespace com.aaronandco.puzzlepotato {
         }        
 
         public void Quit() { // Yes was pressed
+            // Resume time!
+            Time.timeScale = 1;
+
             gameManagerScript.players.Clear();
             SceneManager.LoadScene(0);
         }
