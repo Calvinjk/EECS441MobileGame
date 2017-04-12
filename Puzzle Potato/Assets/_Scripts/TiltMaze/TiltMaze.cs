@@ -10,6 +10,8 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject coinPrefab;
         public int minCoins = 5;
         public int maxCoins = 10;
+        public float minCoinRotationSpeed = 50f;
+        public float maxCoinRotationSpeed = 200f;
         public bool debugLogs = true;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
@@ -46,11 +48,14 @@ namespace com.aaronandco.puzzlepotato {
             // Set up the coins
             numCoins = Random.Range(minCoins, maxCoins + 1);
             if (debugLogs) { Debug.Log("numCoins: " + numCoins); }
-            for (int i = 0; i < numCoins; ++i)
-            {
+            for (int i = 0; i < numCoins; ++i) {
                 Vector3 spawnPos = new Vector3(Random.Range(-hBound, hBound), Random.Range(-vBound, vBound), 0);
                 if (debugLogs) { Debug.Log("Placing coin at: " + spawnPos); }
-                coins.Add(Instantiate(coinPrefab, spawnPos, Quaternion.identity));
+
+                GameObject placedCoin = Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+                SpinningCoin coinScript = (SpinningCoin)placedCoin.GetComponent("SpinningCoin");
+                coinScript.rotationSpeed = Random.Range(minCoinRotationSpeed, maxCoinRotationSpeed);
+                coins.Add(placedCoin);
             }
         }
     }

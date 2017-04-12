@@ -99,6 +99,7 @@
     <Compile Include="Assets\_Scripts\TicTacToe\ReplayTTT.cs" />
     <Compile Include="Assets\_Scripts\TicTacToe\TicTacToe.cs" />
     <Compile Include="Assets\_Scripts\TiltMaze\RollingBall.cs" />
+    <Compile Include="Assets\_Scripts\TiltMaze\SpinningCoin.cs" />
     <Compile Include="Assets\_Scripts\TiltMaze\TiltMaze.cs" />
     <Compile Include="Assets\_Scripts\Timer.cs" />
     <Compile Include="Assets\_Scripts\TimingBar\PeriodicMotion.cs" />
