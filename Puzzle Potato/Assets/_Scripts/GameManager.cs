@@ -17,6 +17,7 @@ namespace com.aaronandco.puzzlepotato {
         public float curTime;                               // How much time is currently left
         public int curPlayer;                               // Which player should be playing
         public List<string> players = new List<string>();   // This is the main player list that will be in effect for the duration of the game
+        public Dictionary<string, int> playerWeights = new Dictionary<string, int>();   // This dictionary will help with the new player-selection logic
 
         void Awake() {
             DontDestroyOnLoad(this);    // Make sure the GameManager can persist between scene changes

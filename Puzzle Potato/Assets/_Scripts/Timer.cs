@@ -18,6 +18,9 @@ namespace com.aaronandco.puzzlepotato {
             timerText = GetComponent<Text>();
             masterControllerScript = (MasterController)GameObject.Find("MasterController").GetComponent("MasterController");
             gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
+
+            // Set up the inital time
+            gameManagerScript.curTime = gameManagerScript.maxTime;
         }
 
         // Update is called once per frame

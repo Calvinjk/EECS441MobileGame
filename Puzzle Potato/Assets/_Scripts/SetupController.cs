@@ -174,6 +174,15 @@ namespace com.aaronandco.puzzlepotato {
 
             gameManagerScript.players = playerNames;
             gameManagerScript.curTime = gameManagerScript.maxTime;
+
+            // Set up the inital dictionary for player weights
+            foreach (string name in playerNames) {
+                gameManagerScript.playerWeights[name] = 1;
+            }
+
+            // Set up the time allotted
+            gameManagerScript.maxTime = playerNames.Count * 30f;
+
             SceneManager.LoadScene(1);
         }
     }
