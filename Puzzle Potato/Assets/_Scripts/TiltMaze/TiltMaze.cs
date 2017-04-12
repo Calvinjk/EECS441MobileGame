@@ -16,12 +16,29 @@ namespace com.aaronandco.puzzlepotato {
 
         float hBound = 7f;
         float vBound = 2.5f;
-        int numCoins;
+        public int numCoins;
         public List<GameObject> coins;
 
         void Start() {
-            //Initialize();
+            Initialize();
+        }
 
+        public void RemoveCoin(GameObject coin) {
+            if (coins.Remove(coin)) {
+                // Successfully removed coin
+                Destroy(coin);
+
+                --numCoins;
+                if (numCoins <= 0) {
+                    GameCompleted();
+                }
+            } else {
+                // Coin did not exist in the list.  This is wrong.  So wrong.
+                Debug.LogError("COIN NOT FOUND IN LIST");
+            }
+        }
+
+        public override void StartGame() {
             // Set up the ball and map
             Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
             Instantiate(boundariesPrefab);
@@ -29,15 +46,12 @@ namespace com.aaronandco.puzzlepotato {
             // Set up the coins
             numCoins = Random.Range(minCoins, maxCoins + 1);
             if (debugLogs) { Debug.Log("numCoins: " + numCoins); }
-            for (int i = 0; i < numCoins; ++i) {
+            for (int i = 0; i < numCoins; ++i)
+            {
                 Vector3 spawnPos = new Vector3(Random.Range(-hBound, hBound), Random.Range(-vBound, vBound), 0);
                 if (debugLogs) { Debug.Log("Placing coin at: " + spawnPos); }
                 coins.Add(Instantiate(coinPrefab, spawnPos, Quaternion.identity));
             }
-        }
-
-        public override void StartGame() {
-            // TODO -- Move all awake and start shit here.
         }
     }
 }

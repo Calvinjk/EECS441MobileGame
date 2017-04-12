@@ -92,8 +92,11 @@ namespace com.aaronandco.puzzlepotato {
             else if (whichPuzzle == 6) {        // TimingBar
                 popUp.GetComponentInChildren<Text>().text = "Tap when the arrow is in the green!";
             }
-            else if (whichPuzzle == 7) {        // TimingBar
+            else if (whichPuzzle == 7) {        // Quiz
                 popUp.GetComponentInChildren<Text>().text = "Select correct answer(s).\nIf you select an incorrect answer,\nyou lose!";
+            }
+            else if (whichPuzzle == 8) {        // TiltMaze
+                popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";
             }
 
             StartCoroutine("StartGameForReal", curPuzzleScript);
