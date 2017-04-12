@@ -61,7 +61,6 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public override void StartGame() {
-            Debug.Log("Started Ordered Touch");
             // Each run through the for loop will spawn a circle randomly on the screen
             // TODO -- If a circle is skipped, wrong number will appear
             numLocations = Random.Range(minLocations, maxLocations + 1);    // Determine how many circles we are going to put down
