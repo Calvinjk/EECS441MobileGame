@@ -17,6 +17,7 @@ namespace com.aaronandco.puzzlepotato {
         public List<GameObject> faceUp; 
         public int whichCard;
         public int matches; 
+        public bool pause; 
 
         void Awake() {
             Initialize();
@@ -35,16 +36,17 @@ namespace com.aaronandco.puzzlepotato {
             faceUp = new List<GameObject>();
             whichCard = 0; 
             matches = 0; 
+            pause = false; 
         }
 
         void Update() {
             // check if you won
-            if (matches == 4) {
+            if (matches == 4 && !pause) {
                 GameCompleted();
             }
 
             // check for a match
-            if (faceUp.Count == 2) {
+            if (faceUp.Count == 2 && !pause) {
                 string type1 = faceUp[0].GetComponent<Text>().text;
                 string type2 = faceUp[1].GetComponent<Text>().text;
 
@@ -61,49 +63,41 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // card was touched!
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0) && !pause) {
+            // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
                 Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      
                 if (colInfo != null) {
                     if (colInfo.gameObject.activeSelf) {
+                        pause = true;
                         colInfo.gameObject.SetActive(false);
                         faceUp.Add(colInfo.gameObject);
-                        Debug.Log("adding card " + colInfo.gameObject.GetComponent<Text>().text);
+                        Debug.Log("added card to faceUp");
+                        pause = false; 
                     }
                 }
             }
-
-            // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {     
-            //     Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
-            //     Vector2 touchPos = new Vector2(wp.x, wp.y);                                 
-            //     Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      
-            //     if (colInfo != null) {
-            //         if (colInfo.gameObject.activeSelf) {
-            //             colInfo.gameObject.SetActive(false);
-            //             faceUp.Add(colInfo.gameObject);
-            //         }
-            //     }
-            // }
         }
 
         IEnumerator ShowCard() {
+            pause = true;
             yield return new WaitForSeconds(.5f);
             faceUp[0].SetActive(true);
             faceUp[1].SetActive(true);
-            Debug.Log("clearing faceUp...");
             faceUp.Clear();
-            Debug.Log("cleared faceUp. There are " + faceUp.Count + " cards in faceUp");
+            Debug.Log("cleared faceUp.");
+            pause = false; 
         }
 
         IEnumerator GotMatch() {
+            pause = true;
             yield return new WaitForSeconds(.5f);
-            faceUp[0].SetActive(false);
-            faceUp[1].SetActive(false);
             matches++;
-            // Debug.Log("got a match");
             faceUp.Clear();
-            // Debug.Log("cleared faceUp. There are " + faceUp.Count + " cards in faceUp");
+            Debug.Log("cleared faceUp.");
+            pause = false;
         }
 
         public override void StartGame() {
