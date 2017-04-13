@@ -26,6 +26,9 @@ namespace com.aaronandco.puzzlepotato {
         Timer timerScript;
         GameManager gameManagerScript;
 
+        Puzzle curPuzzleScript;
+        bool popupTimed;
+
         void Awake() {
             timerScript = (Timer)GameObject.FindGameObjectWithTag("Timer").GetComponent("Timer");
             gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
@@ -66,7 +69,7 @@ namespace com.aaronandco.puzzlepotato {
                 curPuzzle = Instantiate(puzzleOptions[developerPuzzleSelection]); 
             }
 
-            Puzzle curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
+            curPuzzleScript = (Puzzle)curPuzzle.GetComponent("Puzzle");
             if (debugLogs) { Debug.Log("Attempting to start game: " + curPuzzle.name); }
 
             popUp = Instantiate(instrPrefab, GameObject.Find("Canvas").transform, false);
@@ -99,14 +102,42 @@ namespace com.aaronandco.puzzlepotato {
                 popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";
             }
 
-            StartCoroutine("StartGameForReal", curPuzzleScript);
+            popupTimed = false;
+            StartCoroutine("WaitOnPopUp");
 
         }
 
-        IEnumerator StartGameForReal(Puzzle curPuzzleScript) {
-            yield return new WaitForSeconds(1);
-            Destroy(popUp);
+        IEnumerator WaitOnPopUp()
+        {
+            yield return new WaitForSeconds(.5f);
+            popupTimed = true;
+        }
+
+        IEnumerator StartGameForReal() {
+            yield return new WaitForSeconds(.1f);
             curPuzzleScript.StartGame();
+        }
+
+        void Update()
+        {
+            // Assume last frame has been dealt with 
+            bool screenTouched = false;
+
+            // Cycle through touches and if there is a finger that just touched, check if theres a popup ready to delete
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    screenTouched = true;
+                }
+            }
+
+            if (screenTouched && popupTimed)
+            {
+                Destroy(popUp);
+                popupTimed = false;
+                StartCoroutine("StartGameForReal");
+            }
         }
 
         // This gets called by the timer when it hits zero
