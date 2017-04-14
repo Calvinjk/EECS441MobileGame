@@ -11,7 +11,8 @@ namespace com.aaronandco.puzzlepotato {
 
         public bool _______________;
 
-        public List<Vector3> cardsPos; 
+        public List<Vector3> cardsPos;
+        public List<Vector3> backsPos;
         public Dictionary<int, GameObject> cardsFront; 
         public Dictionary<int, GameObject> cardsBack; 
         public List<GameObject> faceUp; 
@@ -31,6 +32,18 @@ namespace com.aaronandco.puzzlepotato {
                 new Vector3(1.5f, -1.75f, 1f),
                 new Vector3(4.5f, -1.75f, 1f)
             };
+
+            backsPos = new List<Vector3>() {
+                new Vector3(-4.5f, 1.75f, 0f),
+                new Vector3(-1.5f, 1.75f, 0f),
+                new Vector3(1.5f, 1.75f, 0f),
+                new Vector3(4.5f, 1.75f, 0f),
+                new Vector3(-4.5f, -1.75f, 0f),
+                new Vector3(-1.5f, -1.75f, 0f),
+                new Vector3(1.5f, -1.75f, 0f),
+                new Vector3(4.5f, -1.75f, 0f)
+            };
+
             cardsFront = new Dictionary<int, GameObject>();
             cardsBack = new Dictionary<int, GameObject>();
             faceUp = new List<GameObject>();
@@ -63,10 +76,10 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // card was touched!
-            if (Input.GetMouseButtonDown(0) && !pause) {
-            // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
-                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
-                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
+            //if (Input.GetMouseButtonDown(0) && !pause) {
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
+                //Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      
                 if (colInfo != null) {
@@ -74,7 +87,7 @@ namespace com.aaronandco.puzzlepotato {
                         pause = true;
                         colInfo.gameObject.SetActive(false);
                         faceUp.Add(colInfo.gameObject);
-                        Debug.Log("added card to faceUp");
+                        Debug.Log("Added card to faceUp: " + colInfo.gameObject.GetComponent<Text>().text);
                         pause = false; 
                     }
                 }
@@ -106,13 +119,11 @@ namespace com.aaronandco.puzzlepotato {
             for (int j = 0; j < 2; ++j) {
                 for (int i = 0; i < 4; ++i) {
                     while (cardsFront.ContainsKey(whichCard)) { whichCard = Random.Range(0, 8); }
-                    cardsBack[whichCard] = Instantiate(cardTypes[4], cardsPos[whichCard], Quaternion.identity);
+                    cardsBack[whichCard] = Instantiate(cardTypes[4], backsPos[whichCard], Quaternion.identity);
                     cardsBack[whichCard].GetComponent<Text>().text = i.ToString();
                     cardsFront[whichCard] = Instantiate(cardTypes[i], cardsPos[whichCard], Quaternion.identity);
                 }
             }
         }
-
-
     }
 }
