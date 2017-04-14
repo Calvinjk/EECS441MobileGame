@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
-    public class MasterController : MonoBehaviour{
+    public class MasterController : MonoBehaviour {
         public List<GameObject> puzzleOptions;      // This should hold all of the GameObjects that run the chosen puzzles
         public GameObject currentPlayerText;        
         [Tooltip("-1 will randomly select puzzles, any other number will only select the puzzle that corresponds to that element number")]
@@ -14,7 +14,7 @@ namespace com.aaronandco.puzzlepotato {
         public bool debugLogs = true;               // True if you want to see the debug logs (development)
 
         public GameObject popupPrefab;
-        public GameObject playerName; 
+        public GameObject playerName;
         public GameObject instrPrefab;
         public GameObject quitPopup;
 
@@ -41,8 +41,64 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public void CurrentGameCompleted() {
-            // Choose new player
-            gameManagerScript.curPlayer = Random.Range(0, gameManagerScript.players.Count);
+            /// Choose new player
+
+            // Sum up all the weights and keyList
+            if (debugLogs) { Debug.Log("Starting to sum weights"); }
+            int weightSum = -1;
+            List<string> keyList = new List<string>();
+            foreach (KeyValuePair<string, int> playerInfo in gameManagerScript.playerWeights) {
+                if (debugLogs) { Debug.Log(playerInfo.Key); }
+                weightSum += playerInfo.Value;
+                keyList.Add(playerInfo.Key);
+            }
+
+            // Chose a number
+            int num = Random.Range(0, weightSum);
+
+            // Figure out which "weight zone" the chosen number is in
+            if (debugLogs) { Debug.Log("Starting to figure out zones"); }
+            int currentZone = -1;
+            string chosenPlayerName = "";
+
+            foreach (string key in keyList) {
+                if (debugLogs) { Debug.Log(key); }
+                // Figure out the current zone
+                currentZone += gameManagerScript.playerWeights[key];
+
+                // Determine if the chosen number lies within this zone
+                if (num <= currentZone) {
+                    chosenPlayerName = key;
+                    break;
+                }
+            }
+
+            /// We found the next player!  Deal with weights and set the curPlayer
+
+            // Deal with new weights
+
+            foreach (string key in keyList) {
+                if (key != chosenPlayerName) {
+                    gameManagerScript.playerWeights[key] += 1;
+                }  else {
+                    gameManagerScript.playerWeights[key] -= 1;
+                }
+            }
+
+            // Set curPlayer
+            for (int i = 0; i < gameManagerScript.players.Count; ++i) {
+                if (gameManagerScript.players[i] == chosenPlayerName) {
+                    gameManagerScript.curPlayer = i;
+                }
+            }
+
+            // Show the supposedly public dictionary
+            if (debugLogs) {
+                Debug.Log("Showing the Dictionary");
+                foreach (KeyValuePair<string, int> playerInfo in gameManagerScript.playerWeights) {
+                    Debug.Log("Key: " + playerInfo.Key + " | Value: " + playerInfo.Value);
+                }
+            }
 
             //show the next player
             playerName.GetComponent<Text>().text = gameManagerScript.players[gameManagerScript.curPlayer];
@@ -107,8 +163,7 @@ namespace com.aaronandco.puzzlepotato {
 
         }
 
-        IEnumerator WaitOnPopUp()
-        {
+        IEnumerator WaitOnPopUp() {
             yield return new WaitForSeconds(.5f);
             popupTimed = true;
         }
@@ -118,24 +173,20 @@ namespace com.aaronandco.puzzlepotato {
             curPuzzleScript.StartGame();
         }
 
-        void Update()
-        {
+        void Update() {
             // Assume last frame has been dealt with 
             bool screenTouched = false;
             // for hannah testing purposes bc she doesn't like to build it for real
             screenTouched = true;
 
             // Cycle through touches and if there is a finger that just touched, check if theres a popup ready to delete
-            foreach (Touch touch in Input.touches)
-            {
-                if (touch.phase == TouchPhase.Began)
-                {
+            foreach (Touch touch in Input.touches) {
+                if (touch.phase == TouchPhase.Began) {
                     screenTouched = true;
                 }
             }
 
-            if (screenTouched && popupTimed)
-            {
+            if (screenTouched && popupTimed) {
                 Destroy(popUp);
                 popupTimed = false;
                 StartCoroutine("StartGameForReal");
