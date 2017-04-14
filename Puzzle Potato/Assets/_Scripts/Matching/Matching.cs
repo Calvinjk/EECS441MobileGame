@@ -56,6 +56,7 @@ namespace com.aaronandco.puzzlepotato {
             // check if you won
             if (matches == 4 && !pause) {
                 GameCompleted();
+                pause = true; 
             }
 
             // check for a match
@@ -76,9 +77,9 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // card was touched!
-            //if (Input.GetMouseButtonDown(0) && !pause) {
+            // if (Input.GetMouseButtonDown(0) && !pause) {
             if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
-                //Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
                 Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      
@@ -87,7 +88,6 @@ namespace com.aaronandco.puzzlepotato {
                         pause = true;
                         colInfo.gameObject.SetActive(false);
                         faceUp.Add(colInfo.gameObject);
-                        Debug.Log("Added card to faceUp: " + colInfo.gameObject.GetComponent<Text>().text);
                         pause = false; 
                     }
                 }
@@ -100,7 +100,6 @@ namespace com.aaronandco.puzzlepotato {
             faceUp[0].SetActive(true);
             faceUp[1].SetActive(true);
             faceUp.Clear();
-            Debug.Log("cleared faceUp.");
             pause = false; 
         }
 
@@ -109,7 +108,6 @@ namespace com.aaronandco.puzzlepotato {
             yield return new WaitForSeconds(.5f);
             matches++;
             faceUp.Clear();
-            Debug.Log("cleared faceUp.");
             pause = false;
         }
 
