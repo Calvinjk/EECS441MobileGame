@@ -22,10 +22,8 @@ namespace com.aaronandco.puzzlepotato {
 
         GameObject popUp;
         int whichPuzzle;
-
         Timer timerScript;
         GameManager gameManagerScript;
-
         Puzzle curPuzzleScript;
         bool popupTimed;
 
@@ -36,6 +34,11 @@ namespace com.aaronandco.puzzlepotato {
             timerScript.StartTimer();
 
             gameManagerScript.ShowCurrentPlayer(currentPlayerText.GetComponent<Text>());
+
+            // Set up the initial weights for the first time
+            for (int i = 0; i < puzzleOptions.Count; ++i) {
+                if (!gameManagerScript.puzzleWeights.ContainsKey(i)) { gameManagerScript.puzzleWeights[i] = 1; }
+            }
 
             StartNewGame();
         }
@@ -53,7 +56,7 @@ namespace com.aaronandco.puzzlepotato {
                 keyList.Add(playerInfo.Key);
             }
 
-            // Chose a number
+            // Choose a number
             int num = Random.Range(0, weightSum);
 
             // Figure out which "weight zone" the chosen number is in
@@ -94,7 +97,7 @@ namespace com.aaronandco.puzzlepotato {
 
             // Show the supposedly public dictionary
             if (debugLogs) {
-                Debug.Log("Showing the Dictionary");
+                Debug.Log("Showing the Player Dictionary");
                 foreach (KeyValuePair<string, int> playerInfo in gameManagerScript.playerWeights) {
                     Debug.Log("Key: " + playerInfo.Key + " | Value: " + playerInfo.Value);
                 }
@@ -116,8 +119,52 @@ namespace com.aaronandco.puzzlepotato {
         public void StartNewGame() {
             // Decide on what puzzle and start it
             GameObject curPuzzle;
-            if (developerPuzzleSelection == -1) { 
-                whichPuzzle = Random.Range(0, puzzleOptions.Count);
+            if (developerPuzzleSelection == -1) {
+                // Sum up the weights
+                int weightSum = -1;
+                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                    weightSum += gameManagerScript.puzzleWeights[i];
+                }
+
+                // Choose a number
+                int num = Random.Range(0, weightSum);
+
+                // Figure out which "weight zone" the chosen number is in
+                int currentZone = -1;
+                int chosenPuzzleNum = -1;
+
+                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                    // Figure out the current zone
+                    currentZone += gameManagerScript.puzzleWeights[i];
+
+                    // Determine if the chosen number lies within this zone
+                    if (num <= currentZone) {
+                        chosenPuzzleNum = i;
+                        break;
+                    }
+                }
+
+                /// We found the next puzzle!  Deal with weights and set the curPlayer
+                
+                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                    if (i != chosenPuzzleNum) {
+                        gameManagerScript.puzzleWeights[i] += 1;
+                    } else {
+                        gameManagerScript.puzzleWeights[i] -= 1;
+                    }
+                }
+
+                // Set whichPuzzle
+                whichPuzzle = chosenPuzzleNum;
+
+                // Show the supposedly public dictionary
+                if (debugLogs) {
+                    Debug.Log("Showing the Puzzle Dictionary");
+                    foreach (KeyValuePair<int, int> puzzleInfo in gameManagerScript.puzzleWeights) {
+                        Debug.Log("Key: " + puzzleInfo.Key + " | Value: " + puzzleInfo.Value);
+                    }
+                }
+
                 curPuzzle = Instantiate(puzzleOptions[whichPuzzle]); 
             }
             else { 
