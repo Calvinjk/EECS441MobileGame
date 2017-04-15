@@ -56,6 +56,7 @@
      <Compile Include="Assets\_Scripts\MasterController.cs" />
      <Compile Include="Assets\_Scripts\Matching\Matching.cs" />
      <Compile Include="Assets\_Scripts\OrderedTouch\OrderedTouch.cs" />
+     <Compile Include="Assets\_Scripts\OrderedTouch\ReplayOT.cs" />
      <Compile Include="Assets\_Scripts\Puzzle.cs" />
      <Compile Include="Assets\_Scripts\Quiz\QuizController.cs" />
      <Compile Include="Assets\_Scripts\Quiz\quiz_helper.cs" />

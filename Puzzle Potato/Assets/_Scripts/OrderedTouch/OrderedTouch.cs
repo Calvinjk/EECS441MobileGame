@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 namespace com.aaronandco.puzzlepotato {
     public class OrderedTouch : Puzzle {
+        public GameObject circlePrefab; // What the circles look like
+        public bool debugLogs = true;   // True if you want to see the debug logs for this puzzle (development)
+        public GameObject popupPrefab;
+
+        public bool ____________________________;  // Separation between public and "private" variables in the inspector
+        
         public int minLocations = 3;    // Minimum number of locations to spawn
         public int maxLocations = 5;    // Maximum number of locations to spawn
         public float circleSize = 0.1f;   // How large of a circle to spawn
         public float minDist = 2f;    // How far apart circles must be
         public int maxAttempts = 10;    // Number of attempts to place a circle before it gives up and skips to the next one
-        public GameObject circlePrefab; // What to spawn (what the circle looks like)
-        public bool debugLogs = true;   // True if you want to see the debug logs for this puzzle (development)
-
-        public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
         public int attemptNum = 1;      // Current touch number.  Used to make sure user has touched the "correct" circle
         public int numLocations;
@@ -21,7 +23,10 @@ namespace com.aaronandco.puzzlepotato {
         public float botBound;
         public float rightBound;
         public float leftBound;
+
         public List<GameObject> circles;
+        public bool pause; 
+        public GameObject losePopup;
 
         void Awake() {
             Initialize();
@@ -31,10 +36,13 @@ namespace com.aaronandco.puzzlepotato {
             botBound = -topBound;
             rightBound = 6.5f;
             leftBound = -rightBound;
+            pause = false;
         }
 
         void Update() {
-            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {     // Make sure only one finger was used and it is coming off the screen
+            // if (Input.GetMouseButtonDown(0) && !pause) {
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     // Make sure only one finger was used and it is coming off the screen
+                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
                 Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 // We have a 2D game, so turn the 3d coordinates into 2D (we dont care about z)
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      // Determine if this 2D point is within any colliders
@@ -63,6 +71,10 @@ namespace com.aaronandco.puzzlepotato {
         public override void StartGame() {
             // Each run through the for loop will spawn a circle randomly on the screen
             // TODO -- If a circle is skipped, wrong number will appear
+            Debug.Log("Starting new game");
+            if (losePopup != null) { Destroy(losePopup); }
+            pause = false; 
+
             numLocations = Random.Range(minLocations, maxLocations + 1);    // Determine how many circles we are going to put down
             for (int i = 0; i < numLocations; ++i) {
                 int attemptNum = 0;
@@ -92,6 +104,13 @@ namespace com.aaronandco.puzzlepotato {
 
         void Restart() {
             if (debugLogs) { Debug.Log("Restarting puzzle"); }
+            StartCoroutine("RestartingGame");
+            losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false);
+        }
+
+        IEnumerator RestartingGame() {
+            pause = true;
+            yield return new WaitForSeconds(.5f);
             attemptNum = 1;     // Reset the number circle needed to touch
             foreach (GameObject circle in circles) {    // Kill all circles
                 Destroy(circle);
