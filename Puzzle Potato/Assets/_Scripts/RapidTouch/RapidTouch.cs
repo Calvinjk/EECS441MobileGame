@@ -12,7 +12,7 @@ namespace com.aaronandco.puzzlepotato {
         public int maxClicks = 50;
         public int minClicks = 25;
         public float showNumberTime = 2f;
-        public float checkAnswerIdleTime = 1f;
+        public float checkAnswerIdleTime = 2f;
         public GameObject number;
         public GameObject youLosePanelPrefab;
         public bool debugLogs = true;
@@ -81,7 +81,8 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // Determine if player has won or not.  Can't lose on the first touch
-            if (curIdleTime < 0 && currentClickCount != startingClickCount && !completed) {
+            // Only wait 1s IF you "would win"
+            if ((curIdleTime < 0 || ((curIdleTime - 1 < 0) && currentClickCount == 0)) && currentClickCount != startingClickCount && !completed) {
                 if (currentClickCount == 0) {
                     GameCompleted();
                     completed = true;
