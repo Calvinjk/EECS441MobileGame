@@ -40,10 +40,10 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         void Update() {
-            // if (Input.GetMouseButtonDown(0) && !pause) {
-            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     // Make sure only one finger was used and it is coming off the screen
-                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
-                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch
+            if (Input.GetMouseButtonDown(0) && !pause) {
+            // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     // Make sure only one finger was used and it is coming off the screen
+                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 // We have a 2D game, so turn the 3d coordinates into 2D (we dont care about z)
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      // Determine if this 2D point is within any colliders
                 if (colInfo != null) { // If something was touched
@@ -52,7 +52,7 @@ namespace com.aaronandco.puzzlepotato {
                         // Correct player input!  Disable the circle.
                         if (debugLogs) { Debug.Log("Disabling circle #" + attemptNum); }
                         ++attemptNum;
-                        colInfo.gameObject.SetActive(false);
+                        StartCoroutine("PopBubble", colInfo);
 
                         // Check to see if player won
                         if (attemptNum > numLocations) {
@@ -66,6 +66,12 @@ namespace com.aaronandco.puzzlepotato {
                     }
                 }
             }
+        }
+
+        IEnumerator PopBubble(Collider2D bubble) {
+            bubble.gameObject.GetComponent<ParticleSystem>().Emit(10);
+            yield return new WaitForSeconds(.25f);
+            bubble.gameObject.SetActive(false);
         }
 
         public override void StartGame() {
@@ -98,6 +104,7 @@ namespace com.aaronandco.puzzlepotato {
                 placedCircle.GetComponentInChildren<TextMesh>().text = (i + 1).ToString();      // Change the text on the circle to the correct number
 
                 circles.Add((GameObject)Instantiate(placedCircle, spawnPos, Quaternion.identity));          // Actually put the circle in the scene
+                
                 if (debugLogs) { Debug.Log("Placing circle of size at (" + spawnPos.x + ", " + spawnPos.y + ")"); } 
             }
         }
@@ -106,12 +113,12 @@ namespace com.aaronandco.puzzlepotato {
             if (debugLogs) { Debug.Log("Restarting puzzle"); }
             StartCoroutine("RestartingGame");
             losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false);
+            attemptNum = 1;     // Reset the number circle needed to touch
         }
 
         IEnumerator RestartingGame() {
             pause = true;
             yield return new WaitForSeconds(.5f);
-            attemptNum = 1;     // Reset the number circle needed to touch
             foreach (GameObject circle in circles) {    // Kill all circles
                 Destroy(circle);
             }
