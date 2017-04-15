@@ -199,15 +199,17 @@ namespace com.aaronandco.puzzlepotato {
                 popUp.GetComponentInChildren<Text>().text = "Tap when the arrow is in the green!";
             }
             else if (whichPuzzle == 7) {        // Quiz
-                popUp.GetComponentInChildren<Text>().text = "Select correct answer(s).\nIf you select an incorrect answer,\nyou lose!";
+                popUp.GetComponentInChildren<Text>().text = "Select correct answer(s)!";
             }
             else if (whichPuzzle == 8) {        // TiltMaze
                 popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";
             }
+            else if (whichPuzzle == 9) {        // Darts
+                popUp.GetComponentInChildren<Text>().text = "Swipe to hit the target!";
+            }
 
             popupTimed = false;
             StartCoroutine("WaitOnPopUp");
-
         }
 
         IEnumerator WaitOnPopUp() {
