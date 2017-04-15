@@ -70,7 +70,7 @@ namespace com.aaronandco.puzzlepotato {
 
         IEnumerator PopBubble(Collider2D bubble) {
             bubble.gameObject.GetComponent<ParticleSystem>().Emit(10);
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.05f);
             bubble.gameObject.SetActive(false);
         }
 
@@ -100,8 +100,9 @@ namespace com.aaronandco.puzzlepotato {
                 }
                 if (attemptNum > maxAttempts) { continue; } // Skip to next circle
                 GameObject placedCircle = circlePrefab;                                         // Create the GameObject we will place
-                placedCircle.transform.localScale = new Vector3(circleSize, circleSize, 1);     // Scale to desired size
+                placedCircle.transform.localScale = new Vector3(circleSize, circleSize, circleSize);     // Scale to desired size
                 placedCircle.GetComponentInChildren<TextMesh>().text = (i + 1).ToString();      // Change the text on the circle to the correct number
+                placedCircle.GetComponent<ParticleSystem>().enableEmission = false;
 
                 circles.Add((GameObject)Instantiate(placedCircle, spawnPos, Quaternion.identity));          // Actually put the circle in the scene
                 
