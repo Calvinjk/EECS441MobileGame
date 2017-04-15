@@ -204,6 +204,9 @@ namespace com.aaronandco.puzzlepotato {
             else if (whichPuzzle == 8) {        // TiltMaze
                 popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";
             }
+            else if (whichPuzzle == 9) {        // Darts
+                popUp.GetComponentInChildren<Text>().text = "Swipe to hit the target!";
+            }
 
             popupTimed = false;
             StartCoroutine("WaitOnPopUp");
