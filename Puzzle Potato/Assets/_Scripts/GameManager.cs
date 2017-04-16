@@ -20,7 +20,23 @@ namespace com.aaronandco.puzzlepotato {
         public Dictionary<string, int> playerWeights = new Dictionary<string, int>();   // This dictionary will help with the new player-selection logic
         public Dictionary<int, int> puzzleWeights = new Dictionary<int, int>();         // This dictionary will help with the new puzzle-selection logic
 
+        public const int NUM_PUZZLES = 10;
+        //settings menu edits this..
+        public List<bool> user_puzzle_selections = new List<bool>();
+        public List<bool> duration = new List<bool>();
+
         void Awake() {
+            for(int i = 0; i < NUM_PUZZLES; i++){
+                //populate user puzzle selection list
+                user_puzzle_selections.Add(true);
+            }
+            //short time selection
+            duration.Add(false);
+            //medium time selection (DEFAULT)
+            duration.Add(true);
+            //Long time selection
+            duration.Add(false);
+            
             DontDestroyOnLoad(this);    // Make sure the GameManager can persist between scene changes
         }
 

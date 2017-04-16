@@ -33,6 +33,8 @@ namespace com.aaronandco.puzzlepotato {
 		private int num_correct_answers;
 		private int players_correct_selections = 0;
 
+		private bool first_question = true;
+
 		void reset(){
 			//reset colors of buttons
 			buttons[0].GetComponent<Button>().image.color = ORIGINAL_COLOR;
@@ -84,46 +86,51 @@ namespace com.aaronandco.puzzlepotato {
 
 		public override void StartGame() {
 
-			//BEGIN instantiating question/answer GameObjects
-			Question = Instantiate(questionPrefab, GameObject.Find("Canvas").transform, false);
-			Vector3 q_pos = new Vector3(0f, 134f, 0f);
-			Question.GetComponent<RectTransform>().localPosition = q_pos;
+			if(first_question){
+				//BEGIN instantiating question/answer GameObjects
+				Question = Instantiate(questionPrefab, GameObject.Find("Canvas").transform, false);
+				Vector3 q_pos = new Vector3(0f, 134f, 0f);
+				Question.GetComponent<RectTransform>().localPosition = q_pos;
 
-			buttons[0] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
-			UnityEngine.UI.Button button_temp = buttons[0].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection);
-			Vector3 position = new Vector3(181f, 47f, 3f);
-			buttons[0].GetComponent<RectTransform>().localPosition = position;
+				buttons[0] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
+				UnityEngine.UI.Button button_temp = buttons[0].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection);
+				Vector3 position = new Vector3(181f, 47f, 3f);
+				buttons[0].GetComponent<RectTransform>().localPosition = position;
 
-			buttons[1] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false) ;
-			button_temp = buttons[1].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection1);
-			position = new Vector3(-181f, 47f, 3f);
-			buttons[1].GetComponent<RectTransform>().localPosition = position;
+				buttons[1] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false) ;
+				button_temp = buttons[1].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection1);
+				position = new Vector3(-181f, 47f, 3f);
+				buttons[1].GetComponent<RectTransform>().localPosition = position;
 
-			buttons[2] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
-			button_temp = buttons[2].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection2);
-			position = new Vector3(181f, -99f, 3f);
-			buttons[2].GetComponent<RectTransform>().localPosition = position;
+				buttons[2] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
+				button_temp = buttons[2].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection2);
+				position = new Vector3(181f, -99f, 3f);
+				buttons[2].GetComponent<RectTransform>().localPosition = position;
 
-			buttons[3] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
-			button_temp = buttons[3].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection3);
-			position = new Vector3(181f, -26f, 3f);
-			buttons[3].GetComponent<RectTransform>().localPosition = position;
+				buttons[3] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
+				button_temp = buttons[3].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection3);
+				position = new Vector3(181f, -26f, 3f);
+				buttons[3].GetComponent<RectTransform>().localPosition = position;
 
-			buttons[4] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
-			button_temp = buttons[4].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection4);
-			position = new Vector3(-181f, -99f, 3f);
-			buttons[4].GetComponent<RectTransform>().localPosition = position;
+				buttons[4] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
+				button_temp = buttons[4].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection4);
+				position = new Vector3(-181f, -99f, 3f);
+				buttons[4].GetComponent<RectTransform>().localPosition = position;
 
-			buttons[5] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
-			button_temp = buttons[5].GetComponent<UnityEngine.UI.Button>();
-			button_temp.onClick.AddListener(Selection5);
-			position = new Vector3(-181f, -26f, 3f);
-			buttons[5].GetComponent<RectTransform>().localPosition = position;
+				buttons[5] = Instantiate(buttonPrefab, GameObject.Find("Canvas").transform, false);
+				button_temp = buttons[5].GetComponent<UnityEngine.UI.Button>();
+				button_temp.onClick.AddListener(Selection5);
+				position = new Vector3(-181f, -26f, 3f);
+				buttons[5].GetComponent<RectTransform>().localPosition = position;
+
+				first_question = false;
+			}
+
 			//END object instantiations ----------------- ----------------------
 
 			//step 1: fill an Array with all available filenames to choose between
@@ -175,10 +182,13 @@ namespace com.aaronandco.puzzlepotato {
 			int num_correct = rand.Next(1, 4);
 			//set the global win condition variable
 			num_correct_answers = num_correct;
+
+			Debug.Log("Number of correct answers: " + num_correct);
 			//the rest will be incorrect answers
 			int num_wrong = TOTAL_POSSIBLE_ANSWERS - num_correct;
 
-			List<string> final_selections = new List<string>();
+			List<string> correct_selections = new List<string>();
+			List<string> wrong_selections = new List<string>();
 
 			int get_answer_at_pos;
 			//we can't allow duplicates, so keep track of answers we've already selected
@@ -193,7 +203,7 @@ namespace com.aaronandco.puzzlepotato {
 				}
 				else{
 					already_selected.Add(get_answer_at_pos);
-					final_selections.Add(correct_array[get_answer_at_pos]);
+					correct_selections.Add(correct_array[get_answer_at_pos]);
 					i++;
 				}
 				
@@ -212,30 +222,56 @@ namespace com.aaronandco.puzzlepotato {
 				}
 				else{
 					already_selected.Add(get_answer_at_pos);
-					final_selections.Add(wrong_array[get_answer_at_pos]);
+					wrong_selections.Add(wrong_array[get_answer_at_pos]);
 					i++;
 				}
 					
 			}
 
 			int temp;
-
+			int right_or_wrong = -1;
+			//put the answer text on buttons!
 			for(int i = 0; i < TOTAL_POSSIBLE_ANSWERS; i++){
 
-				temp = rand.Next(0, final_selections.Count);
-				if(temp <= num_correct-1){
-					//The answer we selected is correct
-					buttons[i].GetComponentInChildren<Text>().text = final_selections[temp];
+				//first, choose a right or wrong answer to give to a button
+				if(correct_selections.Count > 0 && wrong_selections.Count > 0){
+					//we don't want to put right/wrong answers in a deterministic ordering,
+					// so we'll but them in a random order
+					right_or_wrong = rand.Next(0, 2);
+				}
+				if(right_or_wrong == 1){
+
+					temp = rand.Next(0, correct_selections.Count);
+					//Add a correct answer to the button
+					buttons[i].GetComponentInChildren<Text>().text = correct_selections[temp];
 					answer_key[i] = true;
-					final_selections.RemoveAt(temp);
+					correct_selections.RemoveAt(temp);
+
+					if(correct_selections.Count <= 0){
+						//if we've ran out of correct answers, 
+						// only select from the wrong list from here on out
+						right_or_wrong = 0;
+					}
+				}
+				else if(right_or_wrong == 0){
+
+					temp = rand.Next(0, wrong_selections.Count);
+					//Add a correct answer to the button
+					buttons[i].GetComponentInChildren<Text>().text = wrong_selections[temp];
+					answer_key[i] = false;
+					wrong_selections.RemoveAt(temp);
+
+					if(wrong_selections.Count <= 0){
+						//if we've ran out of wrong answers, 
+						// only select from the correct list from here on out
+						right_or_wrong = 1;
+					}
+
 				}
 				else{
-
-					buttons[i].GetComponentInChildren<Text>().text = final_selections[temp];
-					answer_key[i] = false;
-					final_selections.RemoveAt(temp);
+					Debug.Log("ERROR IN QUIZ CONTROLLER line 272");
 				}
-			}
+			}//END FOR LOOP ---------------------------------------------------
 
 		}
 		
