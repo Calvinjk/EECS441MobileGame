@@ -14,6 +14,7 @@ namespace com.aaronandco.puzzlepotato {
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
+        private static GameManager GMInstance;               // Used to make sure the GameManager doesnt duplicate itself
         public float curTime;                               // How much time is currently left
         public int curPlayer;                               // Which player should be playing
         public List<string> players = new List<string>();   // This is the main player list that will be in effect for the duration of the game
@@ -37,8 +38,12 @@ namespace com.aaronandco.puzzlepotato {
             duration.Add(true);
             //Long time selection
             duration.Add(false);
-            
-            DontDestroyOnLoad(this);    // Make sure the GameManager can persist between scene changes
+
+            // Make sure the GameManager can persist between scene changes and not duplicate itself
+            DontDestroyOnLoad(this);
+
+            if (GMInstance == null) { GMInstance = this; }
+            else { Destroy(this.gameObject); }
         }
 
         public void ShowCurrentPlayer(Text currentPlayerText) {

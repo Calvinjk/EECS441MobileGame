@@ -182,7 +182,7 @@ namespace com.aaronandco.puzzlepotato {
 
             // Set up the time allotted
             for (int i = 0; i < 3; ++i) {
-                float timePerPlayer = 30f; // Default 45s
+                float timePerPlayer = 30f; // Default 30s
                 if (gameManagerScript.duration[i]) {
                     switch (i) {
                         case 0: // Short
