@@ -21,6 +21,7 @@ namespace com.aaronandco.puzzlepotato {
         public Dictionary<int, int> puzzleWeights = new Dictionary<int, int>();         // This dictionary will help with the new puzzle-selection logic
 
         public const int NUM_PUZZLES = 10;
+
         //settings menu edits this..
         public List<bool> user_puzzle_selections = new List<bool>();
         public List<bool> duration = new List<bool>();

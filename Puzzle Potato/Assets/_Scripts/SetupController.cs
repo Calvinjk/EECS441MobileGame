@@ -181,7 +181,23 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // Set up the time allotted
-            gameManagerScript.maxTime = playerNames.Count * 30f;
+            for (int i = 0; i < 3; ++i) {
+                float timePerPlayer = 30f; // Default 45s
+                if (gameManagerScript.duration[i]) {
+                    switch (i) {
+                        case 0: // Short
+                            timePerPlayer = 30f;
+                            break;
+                        case 1: // Medium
+                            timePerPlayer = 45f;
+                            break;
+                        case 2: // Long
+                            timePerPlayer = 60f;
+                            break;
+                    }      
+                }
+                gameManagerScript.maxTime = playerNames.Count * timePerPlayer;
+            } 
 
             SceneManager.LoadScene(1);
         }
