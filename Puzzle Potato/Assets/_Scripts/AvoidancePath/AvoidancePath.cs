@@ -8,12 +8,13 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject goalArea;
         public GameObject fallingBlock;
         public GameObject potatoBoatPrefab;
+        public GameObject popupPrefab;
         public float spawnFrequency = 0.5f;
         public float minSpeed = 10f;
         public float maxSpeed = 30f;
         public float maxSize = 10f;
         public float minSize = 1f;
-        public bool debugLogs = true;
+        public bool debugLogs = false;
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
@@ -27,6 +28,8 @@ namespace com.aaronandco.puzzlepotato {
         float topBound = 6f;
         float horizontalBound = 8f;
         public bool complete = false;
+        public bool start = false; 
+        public GameObject losePopup;
 
         void Awake() {
             Initialize();
@@ -46,32 +49,33 @@ namespace com.aaronandco.puzzlepotato {
         void Update() {
             // Check if player is touching the screen
             if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
+                if (start) { losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false); }
                 potato.SetActive(false);
                 SwapMode(true);
             }
 
             if (Input.touchCount == 1) {
+                start = true;
                 potato.SetActive(true);
                 Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                 movePotato(new Vector3(wp.x, wp.y, -1f));
             }
 
-            if (!complete) {
-                if (inProgress) {
-                    curTime -= Time.deltaTime;
-                    if (curTime < 0) {
-                        curTime = spawnFrequency;
-                        float blockSize = Random.Range(minSize, maxSize);
-                        int hPos = Random.Range((int)-4, (int)5);
-                        GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize - 1), 0), Quaternion.identity) as GameObject;
-                        block.transform.localScale = new Vector3(1, blockSize, 1);
-                        block.name = "Log";
+            if (inProgress && !complete) {
+                start = true; 
+                curTime -= Time.deltaTime;
+                if (curTime < 0) {
+                    curTime = spawnFrequency;
+                    float blockSize = Random.Range(minSize, maxSize);
+                    int hPos = Random.Range((int)-4, (int)5);
+                    GameObject block = Instantiate(fallingBlock, new Vector3(hPos, topBound + (blockSize - 1), 0), Quaternion.identity) as GameObject;
+                    block.transform.localScale = new Vector3(1, blockSize, 1);
+                    block.name = "Log";
 
-                        FallDown blockScript = (FallDown)block.GetComponent("FallDown");
-                        blockScript.speed = Random.Range(minSpeed, maxSpeed);
+                    FallDown blockScript = (FallDown)block.GetComponent("FallDown");
+                    blockScript.speed = Random.Range(minSpeed, maxSpeed);
 
-                        blocks.Add(block);
-                    }
+                    blocks.Add(block);
                 }
             }
         }
@@ -84,6 +88,7 @@ namespace com.aaronandco.puzzlepotato {
             if (inGame) {
                 // Swap mode
                 inProgress = false;
+                // if (start) { losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false); }
 
                 // Delete all blocks on screen
                 foreach (GameObject obj in blocks) {
@@ -91,7 +96,7 @@ namespace com.aaronandco.puzzlepotato {
                 }
                 blocks.Clear();
 
-                // Blow up the potato? --  TODO
+                // Blow up the potato
             } else {
                 // Swap mode
                 inProgress = true;
