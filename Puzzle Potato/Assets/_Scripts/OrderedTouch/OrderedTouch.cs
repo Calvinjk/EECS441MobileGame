@@ -70,7 +70,7 @@ namespace com.aaronandco.puzzlepotato {
 
         IEnumerator PopBubble(Collider2D bubble) {
             bubble.gameObject.GetComponent<ParticleSystem>().Emit(10);
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.07f);
             bubble.gameObject.SetActive(false);
         }
 
