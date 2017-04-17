@@ -48,11 +48,11 @@ namespace com.aaronandco.puzzlepotato {
             Debug.Log("UPDATING TTTT");
 
             if (!pause) {
-                //if (Input.GetMouseButtonDown(0)) { // If user is touching the screen
+                // if (Input.GetMouseButtonDown(0)) { // If user is touching the screen
                 if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {     // Make sure only one finger was used and it is coming off the screen
                     if (debugLogs) { Debug.Log("Finger attempted to touch something"); }
-                    Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // Get the world coordinates of the screen touch
-                    // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch
+                    // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // Get the world coordinates of the screen touch
+                    Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);    // Get the world coordinates of the screen touch
                     Vector2 touchPos = new Vector2(wp.x, wp.y);                                 // We have a 2D game, so turn the 3D coordinates into 2D (we dont care about z)
                     Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      // Determine if this 2D point is within any colliders
                     if (colInfo != null) { // If something was touched
@@ -78,24 +78,31 @@ namespace com.aaronandco.puzzlepotato {
                 }
 
                 if (aiMove) {
-                    int row = Random.Range(0, 3);
-                    int col = Random.Range(0, 3);
-                    // Make a more efficent system later with "remembering" -- TODO
-                    while (boardStatus[row, col] != -1) {
-                        row = Random.Range(0, 3);
-                        col = Random.Range(0, 3);
-                        if (debugLogs) { Debug.Log("Trying to place"); }
-                    }
-                    if (debugLogs) { Debug.Log("Placed at [" + row + ", " + col + "]"); }
-
-                    GameObject target = GameObject.Find(row.ToString() + col.ToString());
-                    boardStatus[row, col] = 0;
-                    target.GetComponent<SpriteRenderer>().sprite = oSprite;
-                    target.transform.localScale = new Vector3(.1f, .1f, .1f);
-                    aiMove = false;
-                    CheckWin(0);
+                    StartCoroutine("AIMove");
                 }             
             } 
+        }
+
+        IEnumerator AIMove() {
+            pause = true;
+            yield return new WaitForSeconds(.7f);
+            int row = Random.Range(0, 3);
+            int col = Random.Range(0, 3);
+            // Make a more efficent system later with "remembering" -- TODO
+            while (boardStatus[row, col] != -1) {
+                row = Random.Range(0, 3);
+                col = Random.Range(0, 3);
+                if (debugLogs) { Debug.Log("Trying to place"); }
+            }
+            if (debugLogs) { Debug.Log("Placed at [" + row + ", " + col + "]"); }
+
+            GameObject target = GameObject.Find(row.ToString() + col.ToString());
+            boardStatus[row, col] = 0;
+            target.GetComponent<SpriteRenderer>().sprite = oSprite;
+            target.transform.localScale = new Vector3(.1f, .1f, .1f);
+            aiMove = false;
+            CheckWin(0);
+            pause = false; 
         }
 
         void CheckWin(int player) {
