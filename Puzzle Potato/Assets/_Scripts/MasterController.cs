@@ -235,7 +235,7 @@ namespace com.aaronandco.puzzlepotato {
             // Assume last frame has been dealt with 
             bool screenTouched = false;
             // for hannah testing purposes bc she doesn't like to build it for real
-            //screenTouched = true;
+            screenTouched = true;
 
             // Cycle through touches and if there is a finger that just touched, check if theres a popup ready to delete
             foreach (Touch touch in Input.touches) {
