@@ -49,7 +49,6 @@ namespace com.aaronandco.puzzlepotato {
         void Update() {
             // Check if player is touching the screen
             if (Input.touchCount == 0 || Input.GetTouch(0).phase == TouchPhase.Ended) {
-                if (start) { losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false); }
                 potato.SetActive(false);
                 SwapMode(true);
             }
@@ -88,7 +87,6 @@ namespace com.aaronandco.puzzlepotato {
             if (inGame) {
                 // Swap mode
                 inProgress = false;
-                // if (start) { losePopup = Instantiate(popupPrefab, GameObject.Find("Canvas").transform, false); }
 
                 // Delete all blocks on screen
                 foreach (GameObject obj in blocks) {
