@@ -99,6 +99,9 @@ namespace com.aaronandco.puzzlepotato {
                 // Swap mode
                 inProgress = true;
 
+                // Get rif of thst sdtupid popup
+                if (losePopup != null) { Destroy(losePopup); }
+
                 //Spawn a bunch of starting blocks
                 List<int> positions = new List<int>();
                 for (int i = 0; i < 6; ++i) {                   

@@ -26,6 +26,7 @@ namespace com.aaronandco.puzzlepotato {
                 avoidanceScript.ThePotatoDidIt();
             } else if (col.gameObject.name == "Log") {
                 if (debugLogs) { Debug.Log("Touched a Log"); }
+                if(avoidanceScript.losePopup != null) { Destroy(avoidanceScript.losePopup); }
                 avoidanceScript.losePopup = Instantiate(avoidanceScript.popupPrefab, GameObject.Find("Canvas").transform, false);
                 avoidanceScript.SwapMode(true);
                 gameObject.SetActive(false);

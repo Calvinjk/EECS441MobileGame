@@ -34,8 +34,7 @@ namespace com.aaronandco.puzzlepotato {
         }
 
         public override void StartGame() {
-            GameObject dartInstance = Instantiate(dartPrefab, new Vector3(5f,0f,0f), Quaternion.identity) as GameObject;
-            GameObject boardInstance = boardPrefab;
+            Instantiate(dartPrefab, new Vector3(5f,0f,0f), Quaternion.identity);
             Quaternion boardRotation = Quaternion.Euler(0f, 10f, 90f);
             //boardInstance.transform.localScale = new Vector3(3f, 0.1f, 1f);
             Instantiate(boardPrefab, new Vector3(-5f, 0f, 0f), boardRotation);
