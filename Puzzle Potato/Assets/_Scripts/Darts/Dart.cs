@@ -27,6 +27,8 @@ namespace com.aaronandco.puzzlepotato
         {
             Debug.Log("Hit!");
             dartsScript.Hit();
+            speed = new Vector3(0f, 0f, 0f);
+            acceleration = new Vector3(0f, 0f, 0f);
         }
 
         void FixedUpdate()
