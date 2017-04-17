@@ -77,10 +77,10 @@ namespace com.aaronandco.puzzlepotato {
             }
 
             // card was touched!
-            if (Input.GetMouseButtonDown(0) && !pause) {
-            // if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
-                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
-                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
+            // if (Input.GetMouseButtonDown(0) && !pause) {
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !pause) {     
+                // Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+                Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);   
                 Vector2 touchPos = new Vector2(wp.x, wp.y);                                 
                 Collider2D colInfo = Physics2D.OverlapPoint(touchPos);                      
                 if (colInfo != null) {
