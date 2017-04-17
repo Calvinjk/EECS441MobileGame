@@ -28,6 +28,10 @@ namespace com.aaronandco.puzzlepotato {
                 TitlePanel.SetActive(false);
                 SceneManager.LoadScene(3);
             } 
+            else if(panel == 0){
+
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
