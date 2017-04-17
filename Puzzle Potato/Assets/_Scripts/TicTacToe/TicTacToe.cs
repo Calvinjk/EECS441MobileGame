@@ -45,7 +45,7 @@ namespace com.aaronandco.puzzlepotato {
 
         void FixedUpdate() {
 
-            Debug.Log("UPDATING TTTT");
+            if (debugLogs) { Debug.Log("UPDATING TTTT"); }
 
             if (!pause) {
                 // if (Input.GetMouseButtonDown(0)) { // If user is touching the screen

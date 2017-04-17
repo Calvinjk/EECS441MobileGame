@@ -20,7 +20,7 @@ namespace com.aaronandco.puzzlepotato {
             gameManagerScript = (GameManager)GameObject.Find("GameManager").GetComponent("GameManager");
 
             // Set up the inital time
-            gameManagerScript.curTime = gameManagerScript.maxTime;
+            //gameManagerScript.curTime = gameManagerScript.maxTime;
         }
 
         // Update is called once per frame

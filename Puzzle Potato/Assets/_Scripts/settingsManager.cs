@@ -58,7 +58,7 @@ namespace com.aaronandco.puzzlepotato {
                     //go to the view/edit questions menu
                     break;
                 default:
-                    Debug.LogWarning("Incorrect view selection in QuizMakerController");
+                    //Debug.LogWarning("Incorrect view selection in QuizMakerController");
                     //code should never reach this point
                     break;
             }

@@ -102,7 +102,7 @@ namespace com.aaronandco.puzzlepotato {
                     beginButton.transform.GetChild(1).gameObject.GetComponent<Text>().text = playerNames[gameManagerScript.curPlayer] + ",  please  press  when  ready!";
                     break;
                 default:
-                    Debug.LogWarning("Incorrect view selection");
+                    //Debug.LogWarning("Incorrect view selection");
                     break;
             }         
         }
@@ -134,17 +134,17 @@ namespace com.aaronandco.puzzlepotato {
 
         // Deletes selected user
         public void DeletePlayer(GameObject player) {
-            Debug.Log("deleting: " + player.GetComponentInChildren<Text>().text);
+            //Debug.Log("deleting: " + player.GetComponentInChildren<Text>().text);
             player.SetActive(false);
 
             // Actually delete them out of the array passed to GameManager
-            Debug.Log("Actually deleting: " + player.GetComponentInChildren<Text>().text);
+            //Debug.Log("Actually deleting: " + player.GetComponentInChildren<Text>().text);
             playerNames.Remove(player.GetComponentInChildren<Text>().text);
 
             //re ordering players. this sucks lol.
             for (int i = 0; i < numPlayers; ++i) {
                 if (allPlayers[i].activeInHierarchy) {
-                    Debug.Log(allPlayers[i].GetComponentInChildren<Text>().text);
+                    //Debug.Log(allPlayers[i].GetComponentInChildren<Text>().text);
                     continue;
                 }
 
@@ -166,11 +166,12 @@ namespace com.aaronandco.puzzlepotato {
 
         // Write the current player list to the master GameManager and load the next scene
         public void ProceedToGame() {
-            Debug.Log("PlayerList:");
+            //gameManagerScript.gameInProgress = true;
+            //Debug.Log("PlayerList:");
             for (int i = 0; i < playerNames.Count; ++i) {
-                Debug.Log(playerNames[i]);
+                //Debug.Log(playerNames[i]);
             }
-            Debug.Log("Starting...");
+            //Debug.Log("Starting...");
 
             gameManagerScript.players = playerNames;
             gameManagerScript.curTime = gameManagerScript.maxTime;
@@ -197,7 +198,8 @@ namespace com.aaronandco.puzzlepotato {
                     }      
                 }
                 gameManagerScript.maxTime = playerNames.Count * timePerPlayer;
-            } 
+            }
+            gameManagerScript.curTime = gameManagerScript.maxTime;
 
             SceneManager.LoadScene(1);
         }

@@ -29,7 +29,7 @@ namespace com.aaronandco.puzzlepotato {
                 waiting = false;
                 dP = Input.GetTouch(0).position - dP;
                 dT = Time.time - dT;
-                Debug.Log("dP: " + dP + ",dt: " + dT);
+                //Debug.Log("dP: " + dP + ",dt: " + dT);
             }
         }
 
