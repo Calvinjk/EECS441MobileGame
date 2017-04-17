@@ -23,7 +23,8 @@ namespace com.aaronandco.puzzlepotato {
         public GameObject playerCount;
         public GameObject readyButton;
         public GameObject addPlayerButton;
-        public GameObject backButton;
+        public GameObject backEditButton;
+        public GameObject backMainButton;
         public GameObject playButton;
         public GameObject beginButton; 
 
@@ -54,7 +55,7 @@ namespace com.aaronandco.puzzlepotato {
             startPanel.SetActive (false);
 
             playButton.SetActive (false);
-            backButton.SetActive (false);
+            backEditButton.SetActive (false);
             addPlayerButton.SetActive (false);
             readyButton.SetActive (false);
 
@@ -87,7 +88,9 @@ namespace com.aaronandco.puzzlepotato {
                     instruction.color = Color.black; 
 
                     playButton.SetActive(true);
-                    backButton.SetActive(true);
+                    backEditButton.SetActive(true);
+                    backMainButton.SetActive(false);
+                    playerNameInput.gameObject.SetActive(false); 
 
                     // deactivate delete buttons
                     for (int i = 0; i < numPlayers; ++i) {
