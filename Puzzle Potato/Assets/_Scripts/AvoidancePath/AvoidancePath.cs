@@ -93,13 +93,14 @@ namespace com.aaronandco.puzzlepotato {
                     Destroy(obj);
                 }
                 blocks.Clear();
-
-                // Blow up the potato
             } else {
                 // Swap mode
                 inProgress = true;
 
-                // Get rif of thst sdtupid popup
+                // Bring back the potato!
+                potato.SetActive(true);
+
+                // Get rid of thst stupid popup
                 if (losePopup != null) { Destroy(losePopup); }
 
                 //Spawn a bunch of starting blocks
