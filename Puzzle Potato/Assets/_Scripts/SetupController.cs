@@ -69,6 +69,10 @@ namespace com.aaronandco.puzzlepotato {
                     break;
                 case 1:
                     addPlayersPanel.SetActive (true);
+                    addPlayerButton.SetActive(true);
+                    backMainButton.SetActive(true);
+                    addPlayerButton.SetActive (true);
+                    
                     instruction.text = "please  enter  between  2  and  8  players";
 
                     // turn on the delete buttons
@@ -79,7 +83,6 @@ namespace com.aaronandco.puzzlepotato {
                     if (numPlayers >= 2) {
                         readyButton.SetActive (true);
                     }
-                    addPlayerButton.SetActive (true);
                     
                     break;
                 case 2:
