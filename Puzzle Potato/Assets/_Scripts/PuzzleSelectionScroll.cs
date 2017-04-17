@@ -8,10 +8,10 @@ using UnityEngine.EventSystems;
 namespace com.aaronandco.puzzlepotato {
 	public class PuzzleSelectionScroll : Puzzle {
 
-        private string[] puzzle_names = {"Pop the bubbles", "Squish the bugs", 
-                                 		 "Cross the river", "Tic-tac-toe", 
-                                 		 "Rapid Touch", "Matching", "Timing Bar", 
-                                 		 "Quiz Challenge", "Tilt maze", "Darts"};
+        private string[] puzzle_names = {"Pop the Bubbles", "Squish the Bugs", 
+                                 		 "Cross the River", "Tic-tac-toe", 
+                                 		 "Countdown Button", "Match the Cards", "Stop the Arrow", 
+                                 		 "Trivia", "Roll the Ball", "Darts"};
 
 		public GameObject toggle_template;
 
