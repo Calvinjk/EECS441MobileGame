@@ -21,6 +21,8 @@ namespace com.aaronandco.puzzlepotato {
         public Dictionary<string, int> playerWeights = new Dictionary<string, int>();   // This dictionary will help with the new player-selection logic
         public Dictionary<int, int> puzzleWeights = new Dictionary<int, int>();         // This dictionary will help with the new puzzle-selection logic
 
+        //public bool gameInProgress;
+
         public const int NUM_PUZZLES = 10;
 
         //settings menu edits this..

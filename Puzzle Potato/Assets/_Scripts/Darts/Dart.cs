@@ -25,7 +25,7 @@ namespace com.aaronandco.puzzlepotato
 
         void OnTriggerEnter(Collider collider)
         {
-            Debug.Log("Hit!");
+            //Debug.Log("Hit!");
             dartsScript.Hit();
             speed = new Vector3(0f, 0f, 0f);
             acceleration = new Vector3(0f, 0f, 0f);
@@ -39,7 +39,7 @@ namespace com.aaronandco.puzzlepotato
                 {
                     speed = new Vector3(-forwardVel, dartsScript.dP.y * sideModifier, forwardModifier * dartsScript.dP.x / dartsScript.dT);
                     acceleration = new Vector3(0, 0, gravity);
-                    Debug.Log("speed: " + speed);
+                    //Debug.Log("speed: " + speed);
                     transform.rotation = Quaternion.Euler(0f, 0f, -Mathf.Rad2Deg*Mathf.Atan(dartsScript.dP.y * sideModifier) / forwardVel);
                     speedAccelSet = true;
                 }
@@ -49,12 +49,12 @@ namespace com.aaronandco.puzzlepotato
                 transform.localScale = new Vector3(1f, 1f, 1f) * (1f + (transform.position.z) * -0.25f);
                 if(transform.localScale.x < 0)
                 {
-                    Debug.Log("1.position: " + transform.position);
+                    //Debug.Log("1.position: " + transform.position);
                     transform.localScale = new Vector3(0f, 0f, 0f);
                 }
                 if(transform.position.x < -10 || transform.position.y > 10 || transform.position.y < -10 || transform.position.z > 5)
                 {
-                    Debug.Log("2.position: " + transform.position);
+                    //Debug.Log("2.position: " + transform.position);
                     speedAccelSet = false;
                     dartsScript.StartGame();
                     this.gameObject.SetActive(false);

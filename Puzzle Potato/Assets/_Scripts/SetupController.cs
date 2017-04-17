@@ -166,6 +166,7 @@ namespace com.aaronandco.puzzlepotato {
 
         // Write the current player list to the master GameManager and load the next scene
         public void ProceedToGame() {
+            //gameManagerScript.gameInProgress = true;
             Debug.Log("PlayerList:");
             for (int i = 0; i < playerNames.Count; ++i) {
                 Debug.Log(playerNames[i]);
@@ -197,7 +198,8 @@ namespace com.aaronandco.puzzlepotato {
                     }      
                 }
                 gameManagerScript.maxTime = playerNames.Count * timePerPlayer;
-            } 
+            }
+            gameManagerScript.curTime = gameManagerScript.maxTime;
 
             SceneManager.LoadScene(1);
         }
