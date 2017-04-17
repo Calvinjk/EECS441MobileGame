@@ -208,7 +208,7 @@ namespace com.aaronandco.puzzlepotato {
                 popUp.GetComponentInChildren<Text>().text = "Tap when the arrow is in the green!";
             }
             else if (curPuzzle.name == "QuizGame(Clone)") {     
-                popUp.GetComponentInChildren<Text>().text = "Select correct answer(s)!";
+                popUp.GetComponentInChildren<Text>().text = "Select 1-3 correct answers!";
             }
             else if (curPuzzle.name == "TiltMaze(Clone)") {  
                 popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";

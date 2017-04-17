@@ -72,7 +72,8 @@ namespace com.aaronandco.puzzlepotato {
                     addPlayerButton.SetActive(true);
                     backMainButton.SetActive(true);
                     addPlayerButton.SetActive (true);
-                    
+                    playerNameInput.gameObject.SetActive(true); 
+
                     instruction.text = "please  enter  between  2  and  8  players";
 
                     // turn on the delete buttons
