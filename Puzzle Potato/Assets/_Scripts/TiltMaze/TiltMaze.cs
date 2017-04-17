@@ -36,7 +36,7 @@ namespace com.aaronandco.puzzlepotato {
                 }
             } else {
                 // Coin did not exist in the list.  This is wrong.  So wrong.
-                Debug.LogError("COIN NOT FOUND IN LIST");
+                if (debugLogs) { Debug.LogError("COIN NOT FOUND IN LIST"); }
             }
         }
 

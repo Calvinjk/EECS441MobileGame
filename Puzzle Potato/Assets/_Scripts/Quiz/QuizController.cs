@@ -183,7 +183,7 @@ namespace com.aaronandco.puzzlepotato {
 			//set the global win condition variable
 			num_correct_answers = num_correct;
 
-			Debug.Log("Number of correct answers: " + num_correct);
+            if (debugLogs) { Debug.Log("Number of correct answers: " + num_correct);}
 			//the rest will be incorrect answers
 			int num_wrong = TOTAL_POSSIBLE_ANSWERS - num_correct;
 
@@ -269,7 +269,7 @@ namespace com.aaronandco.puzzlepotato {
 
 				}
 				else{
-					Debug.Log("ERROR IN QUIZ CONTROLLER line 272");
+                    if (debugLogs) { Debug.Log("ERROR IN QUIZ CONTROLLER line 272"); }
 				}
 			}//END FOR LOOP ---------------------------------------------------
 

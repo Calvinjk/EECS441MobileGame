@@ -70,9 +70,9 @@ namespace com.aaronandco.puzzlepotato {
                 }
                 // you didnt, so flip the cards back over
                 else {
-                    Debug.Log("StartCoroutine");
+                    //Debug.Log("StartCoroutine");
                     StartCoroutine("ShowCard");
-                    Debug.Log("EndCoroutine");
+                    //Debug.Log("EndCoroutine");
                 }
             }
 

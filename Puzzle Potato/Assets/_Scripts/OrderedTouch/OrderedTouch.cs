@@ -77,7 +77,7 @@ namespace com.aaronandco.puzzlepotato {
         public override void StartGame() {
             // Each run through the for loop will spawn a circle randomly on the screen
             // TODO -- If a circle is skipped, wrong number will appear
-            Debug.Log("Starting new game");
+            if (debugLogs) { Debug.Log("Starting new game"); }
             if (losePopup != null) { Destroy(losePopup); }
             pause = false; 
 

@@ -25,14 +25,14 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void ReplayGame() {
-			UnityEngine.Debug.Log("continuing");
+			//UnityEngine.Debug.Log("continuing");
 
 			gameManagerScript.curTime = gameManagerScript.maxTime;
 			SceneManager.LoadScene(1);
 		}
 
 		public void NewGame() {
-			UnityEngine.Debug.Log("new game");
+			//UnityEngine.Debug.Log("new game");
 			gameManagerScript.players.Clear();
 			SceneManager.LoadScene(0);
 		}
