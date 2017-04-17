@@ -35,17 +35,14 @@ namespace com.aaronandco.puzzlepotato {
 
 		private bool first_question = true;
 
+		public bool completed = false; 
+
 		void reset(){
-			//reset colors of buttons
-			buttons[0].GetComponent<Button>().image.color = ORIGINAL_COLOR;
-			buttons[1].GetComponent<Button>().image.color = ORIGINAL_COLOR;
-			buttons[2].GetComponent<Button>().image.color = ORIGINAL_COLOR;
-			buttons[3].GetComponent<Button>().image.color = ORIGINAL_COLOR;
-			buttons[4].GetComponent<Button>().image.color = ORIGINAL_COLOR;
-			buttons[5].GetComponent<Button>().image.color = ORIGINAL_COLOR;
 
 			//reset the answer key
 			for(int i = 0; i < TOTAL_POSSIBLE_ANSWERS; i++){
+				buttons[i].GetComponent<Button>().image.color = ORIGINAL_COLOR;
+				buttons[i].SetActive(true);
 				answer_key[i] = false;
 			}
 			//reset the number of answers the player got correct
@@ -57,7 +54,10 @@ namespace com.aaronandco.puzzlepotato {
 			if(num_right >= num_correct_answers){
 
 				//player won! perhaps we should make a congratulatory message?
-				GameCompleted();
+				if (!completed) {
+					completed = true;
+					GameCompleted();
+				}
 			}
 			else{ return; }
 			
@@ -143,7 +143,10 @@ namespace com.aaronandco.puzzlepotato {
 
 
 			if(!File.Exists(Path.Combine(Application.persistentDataPath, "quizData.dat"))){
-				GameCompleted();
+				if (!completed) {
+					completed = true;
+					GameCompleted();
+				}
 			}
 
 			BinaryFormatter bf = new BinaryFormatter();
@@ -277,6 +280,7 @@ namespace com.aaronandco.puzzlepotato {
 		
 
 		public void Selection(){
+			buttons[0].SetActive(false);
 			buttons[0].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[0]){
 
@@ -291,6 +295,7 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void Selection1(){
+			buttons[1].SetActive(false);
 			buttons[1].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[1]){
 
@@ -305,6 +310,7 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void Selection2(){
+			buttons[2].SetActive(false);
 			buttons[2].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[2]){
 
@@ -319,6 +325,7 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void Selection3(){
+			buttons[3].SetActive(false);
 			buttons[3].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[3]){
 
@@ -333,6 +340,7 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void Selection4(){
+			buttons[4].SetActive(false);
 			buttons[4].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[4]){
 
@@ -347,6 +355,7 @@ namespace com.aaronandco.puzzlepotato {
 		}
 
 		public void Selection5(){
+			buttons[5].SetActive(false);
 			buttons[5].GetComponent<Button>().image.color = SELECTED_COLOR;
 			if(answer_key[5]){
 
