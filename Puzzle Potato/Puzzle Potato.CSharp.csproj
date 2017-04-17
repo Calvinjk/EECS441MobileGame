@@ -81,17 +81,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
     <Compile Include="Assets\_Scripts\AvoidancePath\AvoidancePath.cs" />
     <Compile Include="Assets\_Scripts\AvoidancePath\FallDown.cs" />
     <Compile Include="Assets\_Scripts\AvoidancePath\PotatoBoatController.cs" />
     <Compile Include="Assets\_Scripts\BugCatch\BugCatch.cs" />
     <Compile Include="Assets\_Scripts\BugCatch\BugController.cs" />
+    <Compile Include="Assets\_Scripts\Darts\Dart.cs" />
+    <Compile Include="Assets\_Scripts\Darts\Darts.cs" />
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\LoseController.cs" />
     <Compile Include="Assets\_Scripts\MasterController.cs" />
     <Compile Include="Assets\_Scripts\Matching\Matching.cs" />
     <Compile Include="Assets\_Scripts\OrderedTouch\OrderedTouch.cs" />
+    <Compile Include="Assets\_Scripts\OrderedTouch\ReplayOT.cs" />
     <Compile Include="Assets\_Scripts\Puzzle.cs" />
+    <Compile Include="Assets\_Scripts\PuzzleSelectionScroll.cs" />
     <Compile Include="Assets\_Scripts\Quiz\QuizController.cs" />
     <Compile Include="Assets\_Scripts\Quiz\quiz_helper.cs" />
     <Compile Include="Assets\_Scripts\RapidTouch\RapidTouch.cs" />
@@ -104,6 +109,8 @@
     <Compile Include="Assets\_Scripts\Timer.cs" />
     <Compile Include="Assets\_Scripts\TimingBar\PeriodicMotion.cs" />
     <Compile Include="Assets\_Scripts\TimingBar\TimingBar.cs" />
+    <Compile Include="Assets\_Scripts\goToSettings.cs" />
+    <Compile Include="Assets\_Scripts\settingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Scripts\Quiz\music_questions.txt" />

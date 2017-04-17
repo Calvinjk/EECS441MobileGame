@@ -20,6 +20,8 @@ namespace com.aaronandco.puzzlepotato {
 
         public bool ____________________________;  // Separation between public and "private" variables in the inspector
 
+
+        public List<GameObject> modifiedPuzzleOptions;
         GameObject popUp;
         int whichPuzzle;
         Timer timerScript;
@@ -35,8 +37,15 @@ namespace com.aaronandco.puzzlepotato {
 
             gameManagerScript.ShowCurrentPlayer(currentPlayerText.GetComponent<Text>());
 
-            // Set up the initial weights for the first time
+            // Set up exactly which puzzles are going to be used
             for (int i = 0; i < puzzleOptions.Count; ++i) {
+                if (gameManagerScript.user_puzzle_selections[i]) {
+                    modifiedPuzzleOptions.Add(puzzleOptions[i]);
+                }
+            }
+
+            // Set up the initial weights for the first time
+            for (int i = 0; i < modifiedPuzzleOptions.Count; ++i) {
                 if (!gameManagerScript.puzzleWeights.ContainsKey(i)) { gameManagerScript.puzzleWeights[i] = 1; }
             }
 
@@ -122,7 +131,7 @@ namespace com.aaronandco.puzzlepotato {
             if (developerPuzzleSelection == -1) {
                 // Sum up the weights
                 int weightSum = -1;
-                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                for (int i = 0; i < modifiedPuzzleOptions.Count; ++i) {
                     weightSum += gameManagerScript.puzzleWeights[i];
                 }
 
@@ -133,7 +142,7 @@ namespace com.aaronandco.puzzlepotato {
                 int currentZone = -1;
                 int chosenPuzzleNum = -1;
 
-                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                for (int i = 0; i < modifiedPuzzleOptions.Count; ++i) {
                     // Figure out the current zone
                     currentZone += gameManagerScript.puzzleWeights[i];
 
@@ -146,7 +155,7 @@ namespace com.aaronandco.puzzlepotato {
 
                 /// We found the next puzzle!  Deal with weights and set the curPlayer
                 
-                for (int i = 0; i < puzzleOptions.Count; ++i) {
+                for (int i = 0; i < modifiedPuzzleOptions.Count; ++i) {
                     if (i != chosenPuzzleNum) {
                         gameManagerScript.puzzleWeights[i] += 1;
                     } else {
@@ -165,7 +174,7 @@ namespace com.aaronandco.puzzlepotato {
                     }
                 }
 
-                curPuzzle = Instantiate(puzzleOptions[whichPuzzle]); 
+                curPuzzle = Instantiate(modifiedPuzzleOptions[whichPuzzle]); 
             }
             else { 
                 whichPuzzle = developerPuzzleSelection;
@@ -177,34 +186,34 @@ namespace com.aaronandco.puzzlepotato {
 
             popUp = Instantiate(instrPrefab, GameObject.Find("Canvas").transform, false);
 
-            if (whichPuzzle == 0) {             // Ordered Touch
+            if (curPuzzle.name == "OrderedTouch(Clone)") {  
                 popUp.GetComponentInChildren<Text>().text = "Pop the bubbles!";
             }
-            else if (whichPuzzle == 1) {        // Bug Catch
+            else if (curPuzzle.name == "BugCatch(Clone)") {  
                 popUp.GetComponentInChildren<Text>().text = "Squish the bugs!";
             }
-            else if (whichPuzzle == 2) {        // Avoidance Path
+            else if (curPuzzle.name == "AvoidancePath(Clone)") {
                 popUp.GetComponentInChildren<Text>().text = "Cross the river!";
             }
-            else if (whichPuzzle == 3) {        // TTT
+            else if (curPuzzle.name == "TicTacToe(Clone)") {   
                 popUp.GetComponentInChildren<Text>().text = "Play tic-tac-toe!";
             } 
-            else if (whichPuzzle == 4) {        // Rapid Touch
+            else if (curPuzzle.name == "RapidTouch(Clone)") {  
                 popUp.GetComponentInChildren<Text>().text = "Remember how many times to tap!";
             }
-            else if (whichPuzzle == 5) {        // Matching
+            else if (curPuzzle.name == "Matching(Clone)") { 
                 popUp.GetComponentInChildren<Text>().text = "Find all the matches!";
             }
-            else if (whichPuzzle == 6) {        // TimingBar
+            else if (curPuzzle.name == "TimingBar(Clone)") { 
                 popUp.GetComponentInChildren<Text>().text = "Tap when the arrow is in the green!";
             }
-            else if (whichPuzzle == 7) {        // Quiz
+            else if (curPuzzle.name == "QuizGame(Clone)") {     
                 popUp.GetComponentInChildren<Text>().text = "Select correct answer(s)!";
             }
-            else if (whichPuzzle == 8) {        // TiltMaze
+            else if (curPuzzle.name == "TiltMaze(Clone)") {  
                 popUp.GetComponentInChildren<Text>().text = "Tilt the phone to collect the coins!";
             }
-            else if (whichPuzzle == 9) {        // Darts
+            else if (curPuzzle.name == "Darts(Clone)") {   
                 popUp.GetComponentInChildren<Text>().text = "Swipe to hit the target!";
             }
 
