@@ -4,7 +4,7 @@ using System.Collections;
 /// This is the abstract parent class of any puzzle you will be making
 /// How to make your own puzzle:
 /// 1) Make sure your puzzle is surrounded in: namespace com.aaronandco.puzzlepotato {}
-/// 2) Make sure your puzzle inherits from puzzle: public class YourPuzzle : Puzzle {} instead of public class YourPuzzle : MonoBehavior {}
+/// 2) Make sure your puzzle inherits from puzzle: [ public class YourPuzzle : Puzzle {} ] instead of [ public class YourPuzzle : MonoBehavior {} ]
 /// 3) Make sure you call Initialize() in your class's Awake() or Start() function
 /// 4) Implement public override void StartGame() {} as this will be the entry point for your puzzle
 /// 5) Call GameCompleted() when your puzzle has been successfully solved

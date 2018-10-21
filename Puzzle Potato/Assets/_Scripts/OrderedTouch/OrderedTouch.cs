@@ -102,7 +102,7 @@ namespace com.aaronandco.puzzlepotato {
                 GameObject placedCircle = circlePrefab;                                         // Create the GameObject we will place
                 placedCircle.transform.localScale = new Vector3(circleSize, circleSize, circleSize);     // Scale to desired size
                 placedCircle.GetComponentInChildren<TextMesh>().text = (i + 1).ToString();      // Change the text on the circle to the correct number
-                placedCircle.GetComponent<ParticleSystem>().enableEmission = false;
+                placedCircle.GetComponent<ParticleSystem>().emission.enabled = false;
 
                 circles.Add((GameObject)Instantiate(placedCircle, spawnPos, Quaternion.identity));          // Actually put the circle in the scene
                 
